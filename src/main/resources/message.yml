@@ -1,0 +1,6 @@
+Help:
+- '/uig - 查看命令帮助'
+AdminHelp:
+- '/uig reload - 重载插件'
+Message:
+  NoPermission: '&3你没有权限: %s%'

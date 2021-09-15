@@ -1,0 +1,9 @@
+name: UIFactory
+main: com.taylorswiftcn.megumi.uifactory.Main
+version: ${project.version}
+author: 'Megumi'
+api-version: '1.13'
+
+commands:
+  uif:
+    description: show all command
