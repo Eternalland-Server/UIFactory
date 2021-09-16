@@ -1,10 +1,9 @@
-package com.taylorswiftcn.megumi.uifactory.generate.ui.container;
+package com.taylorswiftcn.megumi.uifactory.generate.ui.screen;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.FunctionType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.HudType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.MatchType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ScreenPriority;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -17,8 +16,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class ScreenUI extends BasicContainer{
+public class ScreenUI extends BasicScreen {
 
     private double width;
     private double height;
@@ -57,10 +55,10 @@ public class ScreenUI extends BasicContainer{
         Map<String, String> functionMap = new LinkedHashMap<>();
         functions.forEach(element -> {
             if (element.getParam() == null) {
-                functionMap.put(element.getName(), String.format("func.Packet_Send('%s','%s');", element.getEvent(), getID()));
+                functionMap.put(element.getName(), String.format("func.Packet_Send('%s','%s');", element.getEvent().getName(), getID()));
             }
             else {
-                functionMap.put(element.getName(), String.format("func.Packet_Send('%s','%s', %s);", element.getEvent(), getID(), element.getParam()));
+                functionMap.put(element.getName(), String.format("func.Packet_Send('%s','%s', %s);", element.getEvent().getName(), getID(), element.getParam()));
             }
         });
         yaml.set("Functions", functionMap);
@@ -82,47 +80,47 @@ public class ScreenUI extends BasicContainer{
         return yaml;
     }
 
-    public BasicContainer setMatch(String match) {
+    public BasicScreen setMatch(String match) {
         this.match = match;
         return this;
     }
 
-    public BasicContainer setMatch(MatchType match) {
+    public BasicScreen setMatch(MatchType match) {
         this.match = match.getName();
         return this;
     }
 
-    public BasicContainer setPriority(ScreenPriority priority) {
+    public BasicScreen setPriority(ScreenPriority priority) {
         this.priority = priority;
         return this;
     }
 
-    public BasicContainer setItemAtCursorSize(Integer itemAtCursorSize) {
+    public BasicScreen setItemAtCursorSize(Integer itemAtCursorSize) {
         this.itemAtCursorSize = Math.min(itemAtCursorSize, 50);
         return this;
     }
 
-    public BasicContainer setInteractHUD(Boolean interactHUD) {
+    public BasicScreen setInteractHUD(Boolean interactHUD) {
         this.interactHUD = interactHUD;
         return this;
     }
 
-    public BasicContainer setAllowThrough(Boolean allowThrough) {
+    public BasicScreen setAllowThrough(Boolean allowThrough) {
         this.allowThrough = allowThrough;
         return this;
     }
 
-    public BasicContainer setAllowEsc(Boolean allowEsc) {
+    public BasicScreen setAllowEsc(Boolean allowEsc) {
         this.allowEsc = allowEsc;
         return this;
     }
 
-    public BasicContainer addHideHUD(HudType type) {
+    public BasicScreen addHideHUD(HudType type) {
         if (!this.hideHUD.contains(type)) this.hideHUD.add(type);
         return this;
     }
 
-    public BasicContainer addFunctions(FunctionType type) {
+    public BasicScreen addFunctions(FunctionType type) {
         if (!this.functions.contains(type)) this.functions.add(type);
         return this;
     }

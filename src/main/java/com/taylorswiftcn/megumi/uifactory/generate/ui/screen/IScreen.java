@@ -1,4 +1,4 @@
-package com.taylorswiftcn.megumi.uifactory.generate.ui.container;
+package com.taylorswiftcn.megumi.uifactory.generate.ui.screen;
 
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.IComponent;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Map;
 
-public interface IContainer {
+public interface IScreen {
 
     String getID();
 

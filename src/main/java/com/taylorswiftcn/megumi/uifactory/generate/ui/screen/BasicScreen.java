@@ -1,16 +1,16 @@
-package com.taylorswiftcn.megumi.uifactory.generate.ui.container;
+package com.taylorswiftcn.megumi.uifactory.generate.ui.screen;
 
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.IComponent;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class BasicContainer implements IContainer {
+public abstract class BasicScreen implements IScreen {
 
     private String id;
     private Map<String, IComponent> components;
 
-    public BasicContainer(String id) {
+    public BasicScreen(String id) {
         this.id = id;
         this.components = new LinkedHashMap<>();
     }

@@ -3,6 +3,8 @@ main: com.taylorswiftcn.megumi.uifactory.Main
 version: ${project.version}
 author: 'Megumi'
 api-version: '1.13'
+depend:
+  - DragonCore
 
 commands:
   uif:

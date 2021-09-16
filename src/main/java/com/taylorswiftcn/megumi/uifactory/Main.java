@@ -2,6 +2,7 @@ package com.taylorswiftcn.megumi.uifactory;
 
 import com.taylorswiftcn.megumi.uifactory.commands.MainCommand;
 import com.taylorswiftcn.megumi.uifactory.file.FileManager;
+import com.taylorswiftcn.megumi.uifactory.listener.PacketListener;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +21,7 @@ public class Main extends JavaPlugin {
         fileManager = new FileManager(this);
         fileManager.init();
 
+        Bukkit.getPluginManager().registerEvents(new PacketListener(), this);
         getCommand("uif").setExecutor(new MainCommand());
 
         long end = System.currentTimeMillis();

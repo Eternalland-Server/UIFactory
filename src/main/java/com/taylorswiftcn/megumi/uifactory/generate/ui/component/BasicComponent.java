@@ -152,10 +152,10 @@ public abstract class BasicComponent implements IComponent {
 
             for (ActionType action : actions) {
                 if (action.getParam() == null) {
-                    actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s');", action.getEvent(), getID()));
+                    actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s');", action.getEvent().getName(), getID()));
                 }
                 else {
-                    actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s', %s);", action.getEvent(), getID(), StringUtils.replace(action.getParam(), "%comp%", getID())));
+                    actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s', %s);", action.getEvent().getName(), getID(), StringUtils.replace(action.getParam(), "%comp%", getID())));
                 }
             }
         }
