@@ -1,5 +1,8 @@
 package com.taylorswiftcn.megumi.uifactory.generate.type;
 
+import lombok.Getter;
+
+@Getter
 public enum ScreenPriority {
 
     LOWEST(1),

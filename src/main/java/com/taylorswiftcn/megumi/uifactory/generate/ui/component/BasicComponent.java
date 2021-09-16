@@ -6,6 +6,7 @@ import eos.moe.dragoncore.network.PacketSender;
 import eos.moe.dragoncore.util.Utils;
 import lombok.Getter;
 import lombok.ToString;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
@@ -105,7 +106,7 @@ public abstract class BasicComponent implements IComponent {
     }
 
     @Override
-    public Map<String, Map<String, Object>> build(Player player) {
+    public Map<String, Object> build(Player player) {
         if (this instanceof SlotComp) {
             SlotComp comp = (SlotComp) this;
             if (!comp.getIdentifier().startsWith("container_")) {
@@ -113,34 +114,48 @@ public abstract class BasicComponent implements IComponent {
             }
         }
 
-        LinkedHashMap<String, Map<String, Object>> component = new LinkedHashMap<>();
-        LinkedHashMap<String, Object> attribute = new LinkedHashMap<>();
-        component.put(id, attribute);
+        LinkedHashMap<String, Object> componentMap = new LinkedHashMap<>();
 
         try {
             ComponentField compFiled = this.getClass().getAnnotation(ComponentField.class);
             if (compFiled == null) throw new RuntimeException(this.getClass() + " 未定义ComponentField");
 
-            attribute.put("type", compFiled.define());
+            componentMap.put("type", compFiled.define());
             List<Field> fields = Utils.getDeclaredFields(this.getClass());
             for (Field field : fields) {
                 ComponentField annotation = field.getAnnotation(ComponentField.class);
                 if (annotation == null) continue;
+
                 field.setAccessible(true);
+
+                String define = annotation.define();
                 Object value = field.get(this);
+
                 if (value == null) continue;
-                attribute.put(annotation.define(), value);
+
+                if (define.equals("x")) {
+                    double x = (double) value;
+                    componentMap.put(define, String.format("body.x%s", x > 0 ? "+" + x : String.valueOf(x)));
+                    continue;
+                }
+                if (define.equals("y")) {
+                    double y = (double) value;
+                    componentMap.put(define, String.format("body.y%s", y > 0 ? "+" + y : String.valueOf(y)));
+                    continue;
+                }
+
+                componentMap.put(define, value);
             }
 
             LinkedHashMap<String, Object> actionsMap = new LinkedHashMap<>();
-            attribute.put("actions", actionsMap);
+            componentMap.put("actions", actionsMap);
 
             for (ActionType action : actions) {
                 if (action.getParam() == null) {
                     actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s');", action.getEvent(), getID()));
                 }
                 else {
-                    actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s', %s);", action.getEvent(), getID(), action.getParam()));
+                    actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s', %s);", action.getEvent(), getID(), StringUtils.replace(action.getParam(), "%comp%", getID())));
                 }
             }
         }
@@ -148,7 +163,7 @@ public abstract class BasicComponent implements IComponent {
             e.printStackTrace();
         }
 
-        return component;
+        return componentMap;
     }
 
     public void addAction(ActionType type) {

@@ -7,8 +7,8 @@ public enum FunctionType {
 
     Open("open", "UIFScreenOpenEvent"),
     Close("close", "UIFScreenCloseEvent"),
-    KeyPress("keyPress", "UIFScreenKeyPressEvent", "方法.取当前按下键"),
-    Wheel("wheel", "UIFScreenMouseWheelEvent", "方法.取滚轮值"),
+    KeyPress("keyPress", "UIFScreenKeyPressEvent", "func.key_get_press"),
+    Wheel("wheel", "UIFScreenMouseWheelEvent", "func.mouse_get_wheel"),
     ChatOpen("chatOpen", "UIFScreenChatOpenEvent"),
     ChatClose("chatClose", "UIFScreenChatCloseEvent"),
     Message("message", "UIFScreenReceiveMsgEvent"),

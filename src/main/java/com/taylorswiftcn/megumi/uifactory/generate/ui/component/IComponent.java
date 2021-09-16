@@ -8,5 +8,5 @@ public interface IComponent {
 
     String getID();
 
-    Map<String, Map<String, Object>> build(Player player);
+    Map<String, Object> build(Player player);
 }

@@ -9,15 +9,15 @@ import lombok.EqualsAndHashCode;
 public class ButtonComp extends ImageComp {
 
     public ButtonComp(String id, String texture) {
-        super(id, texture);
+        this(id, texture, null, null, null);
     }
 
     public ButtonComp(String id, String texture, String textureHovered) {
-        super(id, texture, textureHovered);
+        this(id, texture, textureHovered, null, null);
     }
 
     public ButtonComp(String id, String texture, String textureHovered, String text) {
-        super(id, texture, textureHovered, text);
+        this(id, texture, textureHovered, text, null);
     }
 
     public ButtonComp(String id, String texture, String textureHovered, String text, String textColor) {

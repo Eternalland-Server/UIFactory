@@ -19,8 +19,8 @@ public enum ActionType {
     Release("release", "UIFClickReleaseEvent"),
     Enter("enter", "UIFMouseEnterEvent"),
     Leave("leave", "UIFMouseLeaveEvent"),
-    Wheel("wheel", "UIFMouseWheelEvent", "方法.取滚轮值"),
-    TextChange("TextChange", "UIFTextChangeEvent");
+    Wheel("wheel", "UIFMouseWheelEvent", "func.mouse_get_wheel"),
+    TextChange("textChange", "UIFTextChangeEvent", "%comp%.text");
 
     private final String name;
     private final String event;
