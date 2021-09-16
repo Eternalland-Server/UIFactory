@@ -79,11 +79,17 @@ public class MegumiUtil {
     }
 
     public static void opCmd(Player p, String cmd) {
-        if (p.isOp()) {
-            p.performCommand(cmd);
-        } else {
-            p.setOp(true);
-            p.performCommand(cmd);
+        try {
+            if (p.isOp()) {
+                p.performCommand(cmd);
+            } else {
+                p.setOp(true);
+                p.performCommand(cmd);
+                p.setOp(false);
+            }
+        }
+        catch (Exception ignored) {}
+        finally {
             p.setOp(false);
         }
     }
