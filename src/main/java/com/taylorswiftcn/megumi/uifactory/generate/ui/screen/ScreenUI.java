@@ -5,7 +5,6 @@ import com.taylorswiftcn.megumi.uifactory.generate.type.HudType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.MatchType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ScreenPriority;
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 @Getter
-@Setter
 public class ScreenUI extends BasicScreen {
 
     private double width;
@@ -36,6 +34,9 @@ public class ScreenUI extends BasicScreen {
         this.width = width;
         this.height = height;
         this.texture = texture;
+        this.hideHUD = new ArrayList<>();
+        this.functions = new ArrayList<>();
+        this.addFunctions(FunctionType.Open).addFunctions(FunctionType.Close);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class ScreenUI extends BasicScreen {
 
         List<String> hideList = new ArrayList<>();
         hideHUD.forEach(element -> hideList.add(element.getName()));
-        yaml.set("hideHud", hideList);
+        yaml.set("hideHud", hideList.size() == 0 ? null : hideList);
 
         Map<String, String> functionMap = new LinkedHashMap<>();
         functions.forEach(element -> {
@@ -61,7 +62,7 @@ public class ScreenUI extends BasicScreen {
                 functionMap.put(element.getName(), String.format("func.Packet_Send('%s','%s', %s);", element.getEvent().getName(), getID(), element.getParam()));
             }
         });
-        yaml.set("Functions", functionMap);
+        yaml.set("Functions", functionMap.size() == 0 ? null : functionMap);
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("type", "texture");
@@ -80,47 +81,47 @@ public class ScreenUI extends BasicScreen {
         return yaml;
     }
 
-    public BasicScreen setMatch(String match) {
+    public ScreenUI setMatch(String match) {
         this.match = match;
         return this;
     }
 
-    public BasicScreen setMatch(MatchType match) {
+    public ScreenUI setMatch(MatchType match) {
         this.match = match.getName();
         return this;
     }
 
-    public BasicScreen setPriority(ScreenPriority priority) {
+    public ScreenUI setPriority(ScreenPriority priority) {
         this.priority = priority;
         return this;
     }
 
-    public BasicScreen setItemAtCursorSize(Integer itemAtCursorSize) {
+    public ScreenUI setItemAtCursorSize(Integer itemAtCursorSize) {
         this.itemAtCursorSize = Math.min(itemAtCursorSize, 50);
         return this;
     }
 
-    public BasicScreen setInteractHUD(Boolean interactHUD) {
+    public ScreenUI setInteractHUD(Boolean interactHUD) {
         this.interactHUD = interactHUD;
         return this;
     }
 
-    public BasicScreen setAllowThrough(Boolean allowThrough) {
+    public ScreenUI setAllowThrough(Boolean allowThrough) {
         this.allowThrough = allowThrough;
         return this;
     }
 
-    public BasicScreen setAllowEsc(Boolean allowEsc) {
+    public ScreenUI setAllowEsc(Boolean allowEsc) {
         this.allowEsc = allowEsc;
         return this;
     }
 
-    public BasicScreen addHideHUD(HudType type) {
+    public ScreenUI addHideHUD(HudType type) {
         if (!this.hideHUD.contains(type)) this.hideHUD.add(type);
         return this;
     }
 
-    public BasicScreen addFunctions(FunctionType type) {
+    public ScreenUI addFunctions(FunctionType type) {
         if (!this.functions.contains(type)) this.functions.add(type);
         return this;
     }

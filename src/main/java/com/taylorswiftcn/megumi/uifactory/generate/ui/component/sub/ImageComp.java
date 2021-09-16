@@ -3,9 +3,9 @@ package com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.ComponentField;
 import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.Getter;
 
-@Setter
+@Getter
 @EqualsAndHashCode(callSuper = true)
 @ComponentField(define = "texture")
 public class ImageComp extends BasicComponent {
@@ -57,15 +57,45 @@ public class ImageComp extends BasicComponent {
         this.textColor = textColor;
     }
 
-    public BasicComponent setUV(double u, double v) {
-        this.u = u;
-        this.v = v;
+    public BasicComponent setTexture(String texture) {
+        this.texture = texture;
+        return this;
+    }
+
+    public BasicComponent setTextureHovered(String textureHovered) {
+        this.textureHovered = textureHovered;
+        return this;
+    }
+
+    public BasicComponent setTextureWidth(Double textureWidth) {
+        this.textureWidth = textureWidth;
+        return this;
+    }
+
+    public BasicComponent setTextureHeight(Double textureHeight) {
+        this.textureHeight = textureHeight;
         return this;
     }
 
     public BasicComponent setTextureSize(double width, double height) {
         this.textureWidth = width;
         this.textureHeight = height;
+        return this;
+    }
+
+    public BasicComponent setUV(double u, double v) {
+        this.u = u;
+        this.v = v;
+        return this;
+    }
+
+    public BasicComponent setText(String text) {
+        this.text = text;
+        return this;
+    }
+
+    public BasicComponent setTextColor(String textColor) {
+        this.textColor = textColor;
         return this;
     }
 

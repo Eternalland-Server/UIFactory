@@ -3,13 +3,13 @@ package com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.ComponentField;
 import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Setter
+@Getter
 @EqualsAndHashCode(callSuper = true)
 @ComponentField(define = "label")
 public class LabelComp extends BasicComponent {
@@ -39,6 +39,21 @@ public class LabelComp extends BasicComponent {
         super(id);
         this.texts = texts;
         this.center = center;
+    }
+
+    public BasicComponent setTexts(List<String> texts) {
+        this.texts = texts;
+        return this;
+    }
+
+    public BasicComponent setTexts(String text) {
+        this.texts = new ArrayList<>(Collections.singletonList(text));
+        return this;
+    }
+
+    public BasicComponent setCenter(Boolean center) {
+        this.center = center;
+        return this;
     }
 
     public BasicComponent setTextFont(String textFont) {

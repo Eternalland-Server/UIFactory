@@ -148,14 +148,16 @@ public abstract class BasicComponent implements IComponent {
             }
 
             LinkedHashMap<String, Object> actionsMap = new LinkedHashMap<>();
-            componentMap.put("actions", actionsMap);
+            if (actions.size() != 0) {
+                componentMap.put("actions", actionsMap);
 
-            for (ActionType action : actions) {
-                if (action.getParam() == null) {
-                    actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s');", action.getEvent().getName(), getID()));
-                }
-                else {
-                    actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s', %s);", action.getEvent().getName(), getID(), StringUtils.replace(action.getParam(), "%comp%", getID())));
+                for (ActionType action : actions) {
+                    if (action.getParam() == null) {
+                        actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s');", action.getEvent().getName(), getID()));
+                    }
+                    else {
+                        actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s', %s);", action.getEvent().getName(), getID(), StringUtils.replace(action.getParam(), "%comp%", getID())));
+                    }
                 }
             }
         }
@@ -177,6 +179,12 @@ public abstract class BasicComponent implements IComponent {
     }
 
     public BasicComponent setY(double y) {
+        this.y = y;
+        return this;
+    }
+
+    public BasicComponent setXY(double x, double y) {
+        this.x = x;
         this.y = y;
         return this;
     }

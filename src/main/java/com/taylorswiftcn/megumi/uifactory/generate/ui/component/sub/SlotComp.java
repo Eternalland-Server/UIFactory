@@ -4,13 +4,11 @@ import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.ComponentField;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 @Getter
-@Setter
 @EqualsAndHashCode(callSuper = true)
 @ComponentField(define = "slot")
 public class SlotComp extends BasicComponent {
@@ -46,5 +44,15 @@ public class SlotComp extends BasicComponent {
             return new SlotComp(identifier, identifier);
         }
         return new SlotComp(identifier, identifier, item);
+    }
+
+    public BasicComponent setIdentifier(String identifier) {
+        this.identifier = identifier;
+        return this;
+    }
+
+    public BasicComponent setItem(ItemStack item) {
+        this.item = item;
+        return this;
     }
 }

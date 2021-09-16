@@ -19,6 +19,10 @@ public abstract class UIFBaseEvent extends Event {
         this.id = id;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
     @Override
     public HandlerList getHandlers() {
         return handlerList;
