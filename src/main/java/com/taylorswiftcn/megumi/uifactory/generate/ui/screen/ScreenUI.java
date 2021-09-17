@@ -4,6 +4,8 @@ import com.taylorswiftcn.megumi.uifactory.generate.type.FunctionType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.HudType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.MatchType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ScreenPriority;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub.SlotComp;
+import eos.moe.dragoncore.network.PacketSender;
 import lombok.Getter;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -74,7 +76,14 @@ public class ScreenUI extends BasicScreen {
         yaml.set("body", body);
 
         getComponents().forEach((id, component) -> {
-            Map<String, Object> build = component.build(player);
+            if (component instanceof SlotComp) {
+                SlotComp comp = (SlotComp) component;
+                if (!comp.getIdentifier().startsWith("container_")) {
+                    PacketSender.putClientSlotItem(player, comp.getIdentifier(), comp.getItem());
+                }
+            }
+
+            Map<String, Object> build = component.build();
             yaml.set(id, build);
         });
 

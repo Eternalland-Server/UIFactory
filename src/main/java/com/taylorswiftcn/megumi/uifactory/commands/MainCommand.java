@@ -18,7 +18,7 @@ public class MainCommand implements TabExecutor {
     public MainCommand() {
         this.help = new HelpCommand();
         this.commands = new HashMap<>();
-        /*this.commands.put("test",new TestCommand());*/
+        /*this.commands.put("test", new TestCommand());*/
         this.commands.put("reload", new ReloadCommand());
     }
 

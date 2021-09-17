@@ -41,14 +41,6 @@ public class ImageComp extends BasicComponent {
         this(id, texture, null, null, null);
     }
 
-    public ImageComp(String id, String texture, String textureHovered) {
-        this(id, texture, textureHovered, null, null);
-    }
-
-    public ImageComp(String id, String texture, String textureHovered, String text) {
-        this(id, texture, textureHovered, text, null);
-    }
-
     public ImageComp(String id, String texture, String textureHovered, String text, String textColor) {
         super(id);
         this.texture = texture;

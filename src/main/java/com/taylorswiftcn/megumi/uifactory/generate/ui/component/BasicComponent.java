@@ -106,14 +106,7 @@ public abstract class BasicComponent implements IComponent {
     }
 
     @Override
-    public Map<String, Object> build(Player player) {
-        if (this instanceof SlotComp) {
-            SlotComp comp = (SlotComp) this;
-            if (!comp.getIdentifier().startsWith("container_")) {
-                PacketSender.putClientSlotItem(player, comp.getIdentifier(), comp.getItem());
-            }
-        }
-
+    public Map<String, Object> build() {
         LinkedHashMap<String, Object> componentMap = new LinkedHashMap<>();
 
         try {
@@ -147,25 +140,31 @@ public abstract class BasicComponent implements IComponent {
                 componentMap.put(define, value);
             }
 
-            LinkedHashMap<String, Object> actionsMap = new LinkedHashMap<>();
-            if (actions.size() != 0) {
-                componentMap.put("actions", actionsMap);
-
-                for (ActionType action : actions) {
-                    if (action.getParam() == null) {
-                        actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s');", action.getEvent().getName(), getID()));
-                    }
-                    else {
-                        actionsMap.put(action.getName(), String.format("func.Packet_Send('%s','%s', %s);", action.getEvent().getName(), getID(), StringUtils.replace(action.getParam(), "%comp%", getID())));
-                    }
-                }
-            }
+            Map<String, Object> actionMap = buildAction();
+            if (actionMap != null) componentMap.put("actions", buildAction());
         }
         catch (Exception e) {
             e.printStackTrace();
         }
 
         return componentMap;
+    }
+
+    @Override
+    public Map<String, Object> buildAction() {
+        LinkedHashMap<String, Object> actionsMap = new LinkedHashMap<>();
+        if (actions.size() == 0) return null;
+
+        for (ActionType action : actions) {
+            if (action.getParam() == null) {
+                actionsMap.put(action.getName(), String.format("func.Packet_Send('%s', '%s');", action.getEvent().getName(), getID()));
+            }
+            else {
+                actionsMap.put(action.getName(), String.format("func.Packet_Send('%s', '%s', %s);", action.getEvent().getName(), getID(), StringUtils.replace(action.getParam(), "%comp%", getID())));
+            }
+        }
+
+        return actionsMap;
     }
 
     public void addAction(ActionType type) {
