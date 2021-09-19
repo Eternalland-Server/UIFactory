@@ -49,49 +49,49 @@ public class ImageComp extends BasicComponent {
         this.textColor = textColor;
     }
 
-    public BasicComponent setTexture(String texture) {
+    public ImageComp setTexture(String texture) {
         this.texture = texture;
         return this;
     }
 
-    public BasicComponent setTextureHovered(String textureHovered) {
+    public ImageComp setTextureHovered(String textureHovered) {
         this.textureHovered = textureHovered;
         return this;
     }
 
-    public BasicComponent setTextureWidth(Double textureWidth) {
+    public ImageComp setTextureWidth(Double textureWidth) {
         this.textureWidth = textureWidth;
         return this;
     }
 
-    public BasicComponent setTextureHeight(Double textureHeight) {
+    public ImageComp setTextureHeight(Double textureHeight) {
         this.textureHeight = textureHeight;
         return this;
     }
 
-    public BasicComponent setTextureSize(double width, double height) {
+    public ImageComp setTextureSize(double width, double height) {
         this.textureWidth = width;
         this.textureHeight = height;
         return this;
     }
 
-    public BasicComponent setUV(double u, double v) {
+    public ImageComp setUV(double u, double v) {
         this.u = u;
         this.v = v;
         return this;
     }
 
-    public BasicComponent setText(String text) {
+    public ImageComp setText(String text) {
         this.text = text;
         return this;
     }
 
-    public BasicComponent setTextColor(String textColor) {
+    public ImageComp setTextColor(String textColor) {
         this.textColor = textColor;
         return this;
     }
 
-    public BasicComponent setTextFont(String textFont) {
+    public ImageComp setTextFont(String textFont) {
         this.textFont = textFont;
         return this;
     }

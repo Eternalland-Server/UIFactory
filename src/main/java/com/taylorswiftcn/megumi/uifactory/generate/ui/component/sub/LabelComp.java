@@ -41,22 +41,22 @@ public class LabelComp extends BasicComponent {
         this.center = center;
     }
 
-    public BasicComponent setTexts(List<String> texts) {
+    public LabelComp setTexts(List<String> texts) {
         this.texts = texts;
         return this;
     }
 
-    public BasicComponent setTexts(String text) {
+    public LabelComp setTexts(String text) {
         this.texts = new ArrayList<>(Collections.singletonList(text));
         return this;
     }
 
-    public BasicComponent setCenter(Boolean center) {
+    public LabelComp setCenter(Boolean center) {
         this.center = center;
         return this;
     }
 
-    public BasicComponent setTextFont(String textFont) {
+    public LabelComp setTextFont(String textFont) {
         this.textFont = textFont;
         return this;
     }

@@ -31,7 +31,7 @@ public class SlotComp extends BasicComponent {
         this.item = item;
     }
 
-    public BasicComponent setDrawBackground(Boolean drawBackground) {
+    public SlotComp setDrawBackground(Boolean drawBackground) {
         this.drawBackground = drawBackground;
         return this;
     }
@@ -46,12 +46,12 @@ public class SlotComp extends BasicComponent {
         return new SlotComp(identifier, identifier, item);
     }
 
-    public BasicComponent setIdentifier(String identifier) {
+    public SlotComp setIdentifier(String identifier) {
         this.identifier = identifier;
         return this;
     }
 
-    public BasicComponent setItem(ItemStack item) {
+    public SlotComp setItem(ItemStack item) {
         this.item = item;
         return this;
     }

@@ -28,7 +28,7 @@ public class ButtonComp extends ImageComp {
         this.addAction(ActionType.Right_Release);
     }
 
-    public BasicComponent setTextureClicked(String textureClicked) {
+    public ButtonComp setTextureClicked(String textureClicked) {
         this.textureClicked = textureClicked;
         return this;
     }

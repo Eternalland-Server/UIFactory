@@ -30,17 +30,17 @@ public class EntityViewComp extends BasicComponent {
         this.entity = entity;
     }
 
-    public BasicComponent setEntity(String entity) {
+    public EntityViewComp setEntity(String entity) {
         this.entity = entity;
         return this;
     }
 
-    public BasicComponent setShowHead(Boolean showHead) {
+    public EntityViewComp setShowHead(Boolean showHead) {
         this.showHead = showHead;
         return this;
     }
 
-    public BasicComponent setFollowMouse(Boolean followMouse) {
+    public EntityViewComp setFollowMouse(Boolean followMouse) {
         this.followMouse = followMouse;
         return this;
     }

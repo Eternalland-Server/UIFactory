@@ -47,22 +47,22 @@ public class TextBoxComp extends BasicComponent {
         this.addAction(ActionType.TextChange);
     }
 
-    public BasicComponent setLength(Integer length) {
+    public TextBoxComp setLength(Integer length) {
         this.length = length;
         return this;
     }
 
-    public BasicComponent setText(String text) {
+    public TextBoxComp setText(String text) {
         this.text = text;
         return this;
     }
 
-    public BasicComponent setDrawBackground(Boolean drawBackground) {
+    public TextBoxComp setDrawBackground(Boolean drawBackground) {
         this.drawBackground = drawBackground;
         return this;
     }
 
-    public BasicComponent setFocused(Boolean focused) {
+    public TextBoxComp setFocused(Boolean focused) {
         this.focused = focused;
         return this;
     }
