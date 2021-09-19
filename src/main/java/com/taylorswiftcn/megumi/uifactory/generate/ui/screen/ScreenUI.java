@@ -4,6 +4,7 @@ import com.taylorswiftcn.megumi.uifactory.generate.type.FunctionType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.HudType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.MatchType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ScreenPriority;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub.SlotComp;
 import eos.moe.dragoncore.network.PacketSender;
 import lombok.Getter;
@@ -39,6 +40,18 @@ public class ScreenUI extends BasicScreen {
         this.hideHUD = new ArrayList<>();
         this.functions = new ArrayList<>();
         this.addFunctions(FunctionType.Open).addFunctions(FunctionType.Close);
+    }
+
+    public void generateContainerSlot(Player player, double x, double y, double width, double height, double scale, double lineSpace, double columnSpace) {
+        for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < 9; i++) {
+                double slotX = x + (width + lineSpace) * i;
+                double slotY = y + (height + columnSpace) * j;
+                BasicComponent container = SlotComp.getOriginSlot(player, (j + 1) * 9 + i);
+                if (container == null) continue;
+                this.addComponent(container.setXY(slotX, slotY).setCompSize(width, height).setScale(scale));
+            }
+        }
     }
 
     @Override
