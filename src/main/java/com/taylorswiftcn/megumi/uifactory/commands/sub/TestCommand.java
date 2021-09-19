@@ -21,15 +21,7 @@ public class TestCommand extends MegumiCommand {
         ScreenUI ui = new ScreenUI("test", 1222.0 / 3.0, 1121.0 / 3.0, "mythicalcreature/background.png");
         ui.setAllowEsc(true);
 
-        for (int j = 0; j < 4; j++) {
-            for (int i = 0; i < 9; i++) {
-                double x = 69.5 + 30.5 * i;
-                double y = 240.5 + (j == 3 ? 30.5 * (j - 1) + 35.5 : 30.5 * j);
-                SlotComp container = SlotComp.getOriginSlot(player, (j + 1) * 9 + i);
-                if (container == null) continue;
-                ui.addComponent(container.setXY(x, y).setScale(1.3));
-            }
-        }
+        ui.generateContainerSlot(69.5, 240.5, 1.3, 10, 10);
 
         ui.addComponent(new ButtonComp("ConfirmEvolve", "0,0,0,0", "mythicalcreature/after_click.png").setXY(175, 172).setCompSize(426 / 3.0, 113 / 3.0));
         ui.addComponent(new SlotComp("MaterialA", "材料槽位1").setXY(215, 57).setScale(2));

@@ -6,10 +6,12 @@ import com.taylorswiftcn.megumi.uifactory.generate.type.MatchType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ScreenPriority;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub.SlotComp;
+import eos.moe.dragoncore.api.SlotAPI;
 import eos.moe.dragoncore.network.PacketSender;
 import lombok.Getter;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -42,14 +44,14 @@ public class ScreenUI extends BasicScreen {
         this.addFunctions(FunctionType.Open).addFunctions(FunctionType.Close);
     }
 
-    public void generateContainerSlot(Player player, double x, double y, double width, double height, double scale, double lineSpace, double columnSpace) {
+    public void generateContainerSlot(double x, double y, double scale, double lineSpace, double columnSpace) {
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 9; i++) {
-                double slotX = x + (width + lineSpace) * i;
-                double slotY = y + (height + columnSpace) * j;
-                BasicComponent container = SlotComp.getOriginSlot(player, (j + 1) * 9 + i);
+                double slotX = x + (16 * scale + lineSpace) * i;
+                double slotY = y + (16 * scale + columnSpace) * j;
+                BasicComponent container = SlotComp.getOriginSlot((j + 1) * 9 + i);
                 if (container == null) continue;
-                this.addComponent(container.setXY(slotX, slotY).setCompSize(width, height).setScale(scale));
+                this.addComponent(container.setXY(slotX, slotY).setScale(scale));
             }
         }
     }
@@ -92,7 +94,8 @@ public class ScreenUI extends BasicScreen {
             if (component instanceof SlotComp) {
                 SlotComp comp = (SlotComp) component;
                 if (!comp.getIdentifier().startsWith("container_")) {
-                    PacketSender.putClientSlotItem(player, comp.getIdentifier(), comp.getItem());
+                    ItemStack item = SlotAPI.getCacheSlotItem(player, comp.getIdentifier());
+                    PacketSender.putClientSlotItem(player, comp.getIdentifier(), item);
                 }
             }
 
