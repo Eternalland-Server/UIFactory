@@ -1,6 +1,5 @@
 package com.taylorswiftcn.megumi.uifactory.commands;
 
-import com.taylorswiftcn.megumi.uifactory.commands.sub.TestCommand;
 import com.taylorswiftcn.megumi.uifactory.commands.sub.HelpCommand;
 import com.taylorswiftcn.megumi.uifactory.commands.sub.ReloadCommand;
 import org.apache.commons.lang.StringUtils;

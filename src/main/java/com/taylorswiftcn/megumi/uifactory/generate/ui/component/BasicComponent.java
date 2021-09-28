@@ -93,11 +93,11 @@ public abstract class BasicComponent implements IComponent {
     @ComponentField(define = "fy")
     private Double offsetY;
 
-    private List<ActionType> actions;
+    private HashMap<String, String> actions;
 
     public BasicComponent(String id) {
         this.id = id;
-        this.actions = new ArrayList<>();
+        this.actions = new HashMap<>();
     }
 
     @Override
@@ -140,8 +140,7 @@ public abstract class BasicComponent implements IComponent {
                 componentMap.put(define, value);
             }
 
-            Map<String, Object> actionMap = buildAction();
-            if (actionMap != null) componentMap.put("actions", buildAction());
+            if (actions.size() != 0) componentMap.put("actions", actions);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -150,26 +149,17 @@ public abstract class BasicComponent implements IComponent {
         return componentMap;
     }
 
-    @Override
-    public Map<String, Object> buildAction() {
-        LinkedHashMap<String, Object> actionsMap = new LinkedHashMap<>();
-        if (actions.size() == 0) return null;
+    public BasicComponent addAction(ActionType type) {
+        String eventStatement = type.getParam() == null ?
+                String.format("func.Packet_Send('%s', '%s');", type.getEvent().getName(), getID()) :
+                String.format("func.Packet_Send('%s', '%s', %s);", type.getEvent().getName(), getID(), StringUtils.replace(type.getParam(), "%comp%", getID()));
 
-        for (ActionType action : actions) {
-            if (action.getParam() == null) {
-                actionsMap.put(action.getName(), String.format("func.Packet_Send('%s', '%s');", action.getEvent().getName(), getID()));
-            }
-            else {
-                actionsMap.put(action.getName(), String.format("func.Packet_Send('%s', '%s', %s);", action.getEvent().getName(), getID(), StringUtils.replace(action.getParam(), "%comp%", getID())));
-            }
-        }
-
-        return actionsMap;
+        return addAction(type, eventStatement);
     }
 
-    public void addAction(ActionType type) {
-        if (actions.contains(type)) return;
-        actions.add(type);
+    public BasicComponent addAction(ActionType type, String statement) {
+        actions.merge(type.getName(), statement, (a, b) -> a + "\n" + b);
+        return this;
     }
 
     public BasicComponent setX(double x) {

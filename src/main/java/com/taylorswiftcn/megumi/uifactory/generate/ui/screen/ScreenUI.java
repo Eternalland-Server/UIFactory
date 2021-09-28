@@ -13,10 +13,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 public class ScreenUI extends BasicScreen {
@@ -32,7 +29,7 @@ public class ScreenUI extends BasicScreen {
     private Boolean allowThrough;
     private Boolean allowEsc;
     private List<HudType> hideHUD;
-    private List<FunctionType> functions;
+    private HashMap<String, String> functions;
 
     public ScreenUI(String id, double width, double height, String texture) {
         super(id);
@@ -40,7 +37,7 @@ public class ScreenUI extends BasicScreen {
         this.height = height;
         this.texture = texture;
         this.hideHUD = new ArrayList<>();
-        this.functions = new ArrayList<>();
+        this.functions = new HashMap<>();
         this.addFunctions(FunctionType.Open).addFunctions(FunctionType.Close);
     }
 
@@ -70,16 +67,7 @@ public class ScreenUI extends BasicScreen {
         hideHUD.forEach(element -> hideList.add(element.getName()));
         yaml.set("hideHud", hideList.size() == 0 ? null : hideList);
 
-        Map<String, String> functionMap = new LinkedHashMap<>();
-        functions.forEach(element -> {
-            if (element.getParam() == null) {
-                functionMap.put(element.getName(), String.format("func.Packet_Send('%s','%s');", element.getEvent().getName(), getID()));
-            }
-            else {
-                functionMap.put(element.getName(), String.format("func.Packet_Send('%s','%s', %s);", element.getEvent().getName(), getID(), element.getParam()));
-            }
-        });
-        yaml.set("Functions", functionMap.size() == 0 ? null : functionMap);
+        yaml.set("Functions", functions.size() == 0 ? null : functions);
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("type", "texture");
@@ -147,7 +135,20 @@ public class ScreenUI extends BasicScreen {
     }
 
     public ScreenUI addFunctions(FunctionType type) {
-        if (!this.functions.contains(type)) this.functions.add(type);
+        String eventStatement = type.getParam() == null ?
+                String.format("func.Packet_Send('%s','%s');", type.getEvent().getName(), getID()) :
+                String.format("func.Packet_Send('%s','%s', %s);", type.getEvent().getName(), getID(), type.getParam());
+
+        return addFunctions(type, eventStatement);
+    }
+
+    public ScreenUI addFunctions(FunctionType type, String statement) {
+        return addFunctions(type.getName(), statement);
+    }
+
+    public ScreenUI addFunctions(String funcName, String statement) {
+        String current = functions.get(funcName);
+        functions.merge(funcName, statement, (a, b) -> a + "\n" + b);
         return this;
     }
 }

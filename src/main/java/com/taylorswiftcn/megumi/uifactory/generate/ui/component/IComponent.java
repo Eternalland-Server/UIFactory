@@ -9,6 +9,4 @@ public interface IComponent {
     String getID();
 
     Map<String, Object> build();
-
-    Map<String, Object> buildAction();
 }
