@@ -179,8 +179,8 @@ public abstract class BasicComponent implements IComponent {
     }
 
     public BasicComponent setXY(double x, double y) {
-        this.x = "body.x" + (x > 0 ? "+" + x : String.valueOf(x));
-        this.y = "body.y" + (y > 0 ? "+" + y : String.valueOf(y));
+        this.x = "body.x" + (x >= 0 ? "+" + x : String.valueOf(x));
+        this.y = "body.y" + (y >= 0 ? "+" + y : String.valueOf(y));
         return this;
     }
 
