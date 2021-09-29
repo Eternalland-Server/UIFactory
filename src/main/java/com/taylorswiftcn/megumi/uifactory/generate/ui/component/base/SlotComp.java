@@ -1,4 +1,4 @@
-package com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub;
+package com.taylorswiftcn.megumi.uifactory.generate.ui.component.base;
 
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.ComponentField;

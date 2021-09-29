@@ -1,13 +1,10 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui.component;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
-import com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub.SlotComp;
-import eos.moe.dragoncore.network.PacketSender;
 import eos.moe.dragoncore.util.Utils;
 import lombok.Getter;
 import lombok.ToString;
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
 import java.util.*;

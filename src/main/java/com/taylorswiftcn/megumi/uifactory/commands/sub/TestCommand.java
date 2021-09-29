@@ -4,8 +4,9 @@ import com.taylorswiftcn.megumi.uifactory.commands.MegumiCommand;
 import com.taylorswiftcn.megumi.uifactory.commands.PermissionType;
 import com.taylorswiftcn.megumi.uifactory.file.sub.ConfigFile;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.UIFactory;
-import com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub.ButtonComp;
-import com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub.SlotComp;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.ButtonComp;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.SlotComp;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom.BodyComp;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.screen.ScreenUI;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -18,10 +19,12 @@ public class TestCommand extends MegumiCommand {
     public void perform(CommandSender CommandSender, String[] Strings) {
         Player player = getPlayer();
 
-        ScreenUI ui = new ScreenUI("test", 1222.0 / 3.0, 1121.0 / 3.0, "mythicalcreature/background.png");
-        ui.setAllowEsc(true);
+        ScreenUI ui = new ScreenUI("test")
+                .setAllowEsc(true)
+                .setPressEKeyClose()
+                .generateContainerSlot(69.5, 240.5, 1.3, 10, 10);
 
-        ui.generateContainerSlot(69.5, 240.5, 1.3, 10, 10);
+        ui.addComponent(new BodyComp("body", "mythicalcreature/background.png").setCenter().setCompSize(1222.0 / 3.0, 1121.0 / 3.0));
 
         ui.addComponent(new ButtonComp("ConfirmEvolve", "0,0,0,0", "mythicalcreature/after_click.png").setXY(175, 172).setCompSize(426 / 3.0, 113 / 3.0));
         ui.addComponent(new SlotComp("MaterialA", "材料槽位1").setXY(215, 57).setScale(2));

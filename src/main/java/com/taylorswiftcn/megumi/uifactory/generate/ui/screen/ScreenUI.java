@@ -5,7 +5,7 @@ import com.taylorswiftcn.megumi.uifactory.generate.type.HudType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.MatchType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ScreenPriority;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
-import com.taylorswiftcn.megumi.uifactory.generate.ui.component.sub.SlotComp;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.SlotComp;
 import eos.moe.dragoncore.api.SlotAPI;
 import eos.moe.dragoncore.network.PacketSender;
 import lombok.Getter;
@@ -18,10 +18,6 @@ import java.util.*;
 @Getter
 public class ScreenUI extends BasicScreen {
 
-    private double width;
-    private double height;
-    private String texture;
-
     private String match;
     private ScreenPriority priority;
     private Integer itemAtCursorSize;
@@ -31,17 +27,14 @@ public class ScreenUI extends BasicScreen {
     private List<HudType> hideHUD;
     private HashMap<String, String> functions;
 
-    public ScreenUI(String id, double width, double height, String texture) {
+    public ScreenUI(String id) {
         super(id);
-        this.width = width;
-        this.height = height;
-        this.texture = texture;
         this.hideHUD = new ArrayList<>();
         this.functions = new HashMap<>();
         this.addFunctions(FunctionType.Open).addFunctions(FunctionType.Close);
     }
 
-    public void generateContainerSlot(double x, double y, double scale, double lineSpace, double columnSpace) {
+    public ScreenUI generateContainerSlot(double x, double y, double scale, double lineSpace, double columnSpace) {
         for (int j = 0; j < 4; j++) {
             for (int i = 0; i < 9; i++) {
                 double slotX = x + (16 * scale + lineSpace) * i;
@@ -51,6 +44,13 @@ public class ScreenUI extends BasicScreen {
                 this.addComponent(container.setXY(slotX, slotY).setScale(scale));
             }
         }
+
+        return this;
+    }
+
+    public ScreenUI setPressEKeyClose() {
+        addFunctions(FunctionType.KeyPress, "func.Key_Get_Press == 'E' ? { func.Screen_Close } : {};");
+        return this;
     }
 
     @Override
@@ -68,15 +68,6 @@ public class ScreenUI extends BasicScreen {
         yaml.set("hideHud", hideList.size() == 0 ? null : hideList);
 
         yaml.set("Functions", functions.size() == 0 ? null : functions);
-
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("type", "texture");
-        body.put("x", String.format("(w-%f)/2", width));
-        body.put("y", String.format("(h-%f)/2", height));
-        body.put("width", width);
-        body.put("height", height);
-        body.put("texture", texture);
-        yaml.set("body", body);
 
         getComponents().forEach((id, component) -> {
             if (component instanceof SlotComp) {
