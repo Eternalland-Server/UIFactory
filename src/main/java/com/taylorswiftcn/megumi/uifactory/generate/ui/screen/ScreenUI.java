@@ -32,8 +32,7 @@ public class ScreenUI extends BasicScreen {
         super(id);
         this.hideHUD = new ArrayList<>();
         this.functions = new HashMap<>();
-        this.addFunctions(FunctionType.Open).addFunctions(FunctionType.Close);
-        this.addFunctions(FunctionType.Open, "var.cancel = false");
+        this.addFunctions(FunctionType.Open, "var.cancel = false;");
     }
 
     public ScreenUI generateContainerSlot(double x, double y, double scale, double lineSpace, double columnSpace) {

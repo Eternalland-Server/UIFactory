@@ -44,7 +44,6 @@ public class TextBoxComp extends BasicComponent {
         this.length = length;
         this.text = text;
         this.focused = focused;
-        this.addAction(ActionType.TextChange);
     }
 
     public TextBoxComp setLength(Integer length) {
