@@ -153,6 +153,11 @@ public abstract class BasicComponent implements IComponent {
         return this;
     }
 
+    public BasicComponent clearAction() {
+        actions.clear();
+        return this;
+    }
+
     public BasicComponent setX(double x) {
         this.x = "body.x" + (x > 0 ? "+" + x : String.valueOf(x));
         return this;

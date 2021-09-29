@@ -150,4 +150,9 @@ public class ScreenUI extends BasicScreen {
         functions.merge(funcName, statement, (a, b) -> a + "\n" + b);
         return this;
     }
+
+    public ScreenUI clearFunctions() {
+        functions.clear();
+        return this;
+    }
 }
