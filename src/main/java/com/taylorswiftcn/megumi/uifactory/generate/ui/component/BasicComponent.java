@@ -19,28 +19,28 @@ public abstract class BasicComponent implements IComponent {
     private String id;
 
     @ComponentField(define = "x")
-    private Double x;
+    private String x;
 
     @ComponentField(define = "y")
-    private Double y;
+    private String y;
 
     @ComponentField(define = "width")
-    private Double width;
+    private String width;
 
     @ComponentField(define = "height")
-    private Double height;
+    private String height;
 
     @ComponentField(define = "limitX")
-    private Double limitX;
+    private String limitX;
 
     @ComponentField(define = "limitY")
-    private Double limitY;
+    private String limitY;
 
     @ComponentField(define = "limitWidth")
-    private Double limitWidth;
+    private String limitWidth;
 
     @ComponentField(define = "limitHeight")
-    private Double limitHeight;
+    private String limitHeight;
 
     @ComponentField(define = "minDistanceX")
     private Double minMoveX;
@@ -126,17 +126,6 @@ public abstract class BasicComponent implements IComponent {
 
                 if (value == null) continue;
 
-                if (define.equals("x")) {
-                    double x = (double) value;
-                    componentMap.put(define, String.format("body.x%s", x > 0 ? "+" + x : String.valueOf(x)));
-                    continue;
-                }
-                if (define.equals("y")) {
-                    double y = (double) value;
-                    componentMap.put(define, String.format("body.y%s", y > 0 ? "+" + y : String.valueOf(y)));
-                    continue;
-                }
-
                 componentMap.put(define, value);
             }
 
@@ -163,53 +152,105 @@ public abstract class BasicComponent implements IComponent {
     }
 
     public BasicComponent setX(double x) {
-        this.x = x;
+        this.x = "body.x" + (x > 0 ? "+" + x : String.valueOf(x));
         return this;
     }
 
     public BasicComponent setY(double y) {
+        this.y = "body.y" + (y > 0 ? "+" + y : String.valueOf(y));
+        return this;
+    }
+
+    public BasicComponent setX(String x) {
+        this.x = x;
+        return this;
+    }
+
+    public BasicComponent setY(String y) {
         this.y = y;
         return this;
     }
 
     public BasicComponent setXY(double x, double y) {
+        this.x = "body.x" + (x > 0 ? "+" + x : String.valueOf(x));
+        this.y = "body.y" + (y > 0 ? "+" + y : String.valueOf(y));
+        return this;
+    }
+
+    public BasicComponent setXY(String x, String y) {
         this.x = x;
         this.y = y;
         return this;
     }
 
     public BasicComponent setWidth(double width) {
-        this.width = width;
+        this.width = String.valueOf(width);
         return this;
     }
 
     public BasicComponent setHeight(double height) {
+        this.height = String.valueOf(height);
+        return this;
+    }
+
+    public BasicComponent setWidth(String width) {
+        this.width = width;
+        return this;
+    }
+
+    public BasicComponent setHeight(String height) {
         this.height = height;
         return this;
     }
 
     public BasicComponent setCompSize(double width, double height) {
+        this.width = String.valueOf(width);
+        this.height = String.valueOf(height);
+        return this;
+    }
+
+    public BasicComponent setCompSize(String width, String height) {
         this.width = width;
         this.height = height;
         return this;
     }
 
     public BasicComponent setLimitX(double limitX) {
-        this.limitX = limitX;
+        this.limitX = String.valueOf(limitX);
         return this;
     }
 
     public BasicComponent setLimitY(double limitY) {
+        this.limitY = String.valueOf(limitY);
+        return this;
+    }
+
+    public BasicComponent setLimitX(String limitX) {
+        this.limitX = limitX;
+        return this;
+    }
+
+    public BasicComponent setLimitY(String limitY) {
         this.limitY = limitY;
         return this;
     }
 
     public BasicComponent setLimitWidth(double limitWidth) {
-        this.limitWidth = limitWidth;
+        this.limitWidth = String.valueOf(limitWidth);
         return this;
     }
 
     public BasicComponent setLimitHeight(double limitHeight) {
+        this.limitHeight = String.valueOf(limitHeight);
+        return this;
+    }
+
+    public BasicComponent setLimitWidth(String limitWidth) {
+        this.limitWidth = limitWidth;
+        return this;
+    }
+
+    public BasicComponent setLimitHeight(String limitHeight) {
         this.limitHeight = limitHeight;
         return this;
     }
