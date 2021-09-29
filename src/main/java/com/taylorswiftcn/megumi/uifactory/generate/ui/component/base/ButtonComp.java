@@ -19,7 +19,9 @@ public class ButtonComp extends TextureComp {
         this.textureClicked = textureClicked;
         this
                 .addAction(ActionType.Left_Click)
-                .addAction(ActionType.Left_Release);
+                .addAction(ActionType.Left_Release)
+                .addAction(ActionType.Enter, "var.cancel = false")
+                .addAction(ActionType.Leave, "var.cancel = true");
 
         if (textureClicked == null) return;
         this

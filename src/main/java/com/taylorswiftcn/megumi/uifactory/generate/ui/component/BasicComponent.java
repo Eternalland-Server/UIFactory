@@ -1,6 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui.component;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.ButtonComp;
 import eos.moe.dragoncore.util.Utils;
 import lombok.Getter;
 import lombok.ToString;
@@ -139,6 +140,10 @@ public abstract class BasicComponent implements IComponent {
         String eventStatement = type.getParam() == null ?
                 String.format("func.Packet_Send('%s', '%s');", type.getEvent().getName(), getID()) :
                 String.format("func.Packet_Send('%s', '%s', %s);", type.getEvent().getName(), getID(), StringUtils.replace(type.getParam(), "%comp%", getID()));
+
+        if (this instanceof ButtonComp) {
+            eventStatement = String.format("!var.cancel ? { %s } : {};", eventStatement);
+        }
 
         return addAction(type, eventStatement);
     }
