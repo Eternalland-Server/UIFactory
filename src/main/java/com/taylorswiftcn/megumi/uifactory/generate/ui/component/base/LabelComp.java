@@ -17,8 +17,17 @@ public class LabelComp extends BasicComponent {
     @ComponentField(define = "texts")
     private List<String> texts;
 
+    @ComponentField(define = "color")
+    private String color;
+
     @ComponentField(define = "center")
     private Boolean center;
+
+    @ComponentField(define = "shadow")
+    private Boolean shadow;
+
+    @ComponentField(define = "length")
+    private Integer length;
 
     @ComponentField(define = "font")
     private String textFont;
@@ -51,8 +60,23 @@ public class LabelComp extends BasicComponent {
         return this;
     }
 
+    public LabelComp setColor(String color) {
+        this.color = color;
+        return this;
+    }
+
     public LabelComp setCenter(Boolean center) {
         this.center = center;
+        return this;
+    }
+
+    public LabelComp setShadow(Boolean shadow) {
+        this.shadow = shadow;
+        return this;
+    }
+
+    public LabelComp setLength(Integer length) {
+        this.length = length;
         return this;
     }
 
