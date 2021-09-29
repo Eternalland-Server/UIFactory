@@ -1,12 +1,12 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom;
 
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.ComponentField;
-import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.ImageComp;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.TextureComp;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @ComponentField(define = "texture")
-public class BodyComp extends ImageComp {
+public class BodyComp extends TextureComp {
 
     public BodyComp(String id, String texture) {
         super(id, texture);

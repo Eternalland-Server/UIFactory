@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode(callSuper = true)
 @ComponentField(define = "texture")
-public class ImageComp extends BasicComponent {
+public class TextureComp extends BasicComponent {
 
     @ComponentField(define = "texture")
     private String texture;
@@ -37,11 +37,11 @@ public class ImageComp extends BasicComponent {
     @ComponentField(define = "font")
     private String textFont;
 
-    public ImageComp(String id, String texture) {
+    public TextureComp(String id, String texture) {
         this(id, texture, null, null, null);
     }
 
-    public ImageComp(String id, String texture, String textureHovered, String text, String textColor) {
+    public TextureComp(String id, String texture, String textureHovered, String text, String textColor) {
         super(id);
         this.texture = texture;
         this.textureHovered = textureHovered;
@@ -49,49 +49,49 @@ public class ImageComp extends BasicComponent {
         this.textColor = textColor;
     }
 
-    public ImageComp setTexture(String texture) {
+    public TextureComp setTexture(String texture) {
         this.texture = texture;
         return this;
     }
 
-    public ImageComp setTextureHovered(String textureHovered) {
+    public TextureComp setTextureHovered(String textureHovered) {
         this.textureHovered = textureHovered;
         return this;
     }
 
-    public ImageComp setTextureWidth(Double textureWidth) {
+    public TextureComp setTextureWidth(Double textureWidth) {
         this.textureWidth = textureWidth;
         return this;
     }
 
-    public ImageComp setTextureHeight(Double textureHeight) {
+    public TextureComp setTextureHeight(Double textureHeight) {
         this.textureHeight = textureHeight;
         return this;
     }
 
-    public ImageComp setTextureSize(double width, double height) {
+    public TextureComp setTextureSize(double width, double height) {
         this.textureWidth = width;
         this.textureHeight = height;
         return this;
     }
 
-    public ImageComp setUV(double u, double v) {
+    public TextureComp setUV(double u, double v) {
         this.u = u;
         this.v = v;
         return this;
     }
 
-    public ImageComp setText(String text) {
+    public TextureComp setText(String text) {
         this.text = text;
         return this;
     }
 
-    public ImageComp setTextColor(String textColor) {
+    public TextureComp setTextColor(String textColor) {
         this.textColor = textColor;
         return this;
     }
 
-    public ImageComp setTextFont(String textFont) {
+    public TextureComp setTextFont(String textFont) {
         this.textFont = textFont;
         return this;
     }

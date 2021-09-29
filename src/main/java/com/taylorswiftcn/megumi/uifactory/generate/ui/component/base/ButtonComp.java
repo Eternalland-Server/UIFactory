@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @ComponentField(define = "texture")
-public class ButtonComp extends ImageComp {
+public class ButtonComp extends TextureComp {
 
     private String textureClicked;
 

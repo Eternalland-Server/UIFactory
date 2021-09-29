@@ -5,7 +5,7 @@ DragonCore UI Generate API
 Component:
 - [x] Button
 - [x] EntityView
-- [x] Image
+- [x] Texture
 - [x] Label
 - [ ] ScrollBar
 - [x] Slot
