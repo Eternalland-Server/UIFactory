@@ -5,6 +5,7 @@ import com.taylorswiftcn.megumi.uifactory.generate.type.HudType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.MatchType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ScreenPriority;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.IComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.SlotComp;
 import eos.moe.dragoncore.api.SlotAPI;
 import eos.moe.dragoncore.network.PacketSender;
@@ -83,6 +84,12 @@ public class ScreenUI extends BasicScreen {
         });
 
         return yaml;
+    }
+
+    @Override
+    public ScreenUI addComponent(IComponent component) {
+        super.addComponent(component);
+        return this;
     }
 
     public ScreenUI setMatch(String match) {

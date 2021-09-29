@@ -22,17 +22,15 @@ public class TestCommand extends MegumiCommand {
         ScreenUI ui = new ScreenUI("test")
                 .setAllowEsc(true)
                 .setPressEKeyClose()
-                .generateContainerSlot(69.5, 240.5, 1.3, 10, 10);
-
-        ui.addComponent(new BodyComp("body", "mythicalcreature/background.png").setCenter().setCompSize(1222.0 / 3.0, 1121.0 / 3.0));
-
-        ui.addComponent(new ButtonComp("ConfirmEvolve", "0,0,0,0", "mythicalcreature/after_click.png").setXY(175, 172).setCompSize(426 / 3.0, 113 / 3.0));
-        ui.addComponent(new SlotComp("MaterialA", "材料槽位1").setXY(215, 57).setScale(2));
-        ui.addComponent(new SlotComp("MaterialB", "材料槽位2").setXY(274, 57).setScale(2));
-        ui.addComponent(new SlotComp("MaterialC", "材料槽位3").setXY(215, 103).setScale(2));
-        ui.addComponent(new SlotComp("MaterialD", "材料槽位4").setXY(274, 103).setScale(2));
-        ui.addComponent(new SlotComp("CreatureEgg", "神兽蛋槽位").setXY(101, 71).setScale(3.1));
-        ui.addComponent(new SlotComp("EvolveItem", "进阶品槽位").setXY(101, 166).setScale(3.1));
+                .generateContainerSlot(69.5, 240.5, 1.3, 10, 10)
+                .addComponent(new BodyComp("body", "mythicalcreature/background.png").setCenter().setCompSize(1222.0 / 3.0, 1121.0 / 3.0))
+                .addComponent(new ButtonComp("ConfirmEvolve", "0,0,0,0", "mythicalcreature/after_click.png").setXY(175, 172).setCompSize(426 / 3.0, 113 / 3.0))
+                .addComponent(new SlotComp("MaterialA", "材料槽位1").setXY(215, 57).setScale(2))
+                .addComponent(new SlotComp("MaterialB", "材料槽位2").setXY(274, 57).setScale(2))
+                .addComponent(new SlotComp("MaterialC", "材料槽位3").setXY(215, 103).setScale(2))
+                .addComponent(new SlotComp("MaterialD", "材料槽位4").setXY(274, 103).setScale(2))
+                .addComponent(new SlotComp("CreatureEgg", "神兽蛋槽位").setXY(101, 71).setScale(3.1))
+                .addComponent(new SlotComp("EvolveItem", "进阶品槽位").setXY(101, 166).setScale(3.1));
 
         File file = new File(getPlugin().getDataFolder(), "test.yml");
         YamlConfiguration yaml = ui.build(player);

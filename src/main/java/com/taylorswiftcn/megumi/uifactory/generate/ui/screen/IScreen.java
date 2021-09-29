@@ -14,7 +14,7 @@ public interface IScreen {
 
     IComponent getComponent(String id);
 
-    void addComponent(IComponent component);
+    IScreen addComponent(IComponent component);
 
     YamlConfiguration build(Player player);
 }
