@@ -17,8 +17,14 @@ public class UIFactory {
         closeScreen(player);
         playerScreens.put(player.getUniqueId(), screen);
         YamlConfiguration yaml = screen.build(player);
+
         PacketSender.sendYaml(player, String.format("Gui/%s.yml", screen.getID()), yaml);
-        PacketSender.sendOpenGui(player, screen.getID());
+        if (screen.getMatch().equalsIgnoreCase("hud")) {
+            PacketSender.sendOpenHud(player, screen.getID());
+        }
+        else {
+            PacketSender.sendOpenGui(player, screen.getID());
+        }
     }
 
     public static ScreenUI getOpenScreen(Player player) {
