@@ -17,9 +17,6 @@ public class ButtonComp extends TextureComp {
     public ButtonComp(String id, String texture, String textureClicked, String textureHovered, String text, String textColor) {
         super(id, texture, textureHovered, text, textColor);
         this.textureClicked = textureClicked;
-        this
-                .addAction(ActionType.Enter, "var.cancel = false;")
-                .addAction(ActionType.Leave, "var.cancel = true;");
 
         if (textureClicked == null) return;
         this
