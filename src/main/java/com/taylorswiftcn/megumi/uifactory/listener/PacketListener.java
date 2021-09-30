@@ -5,11 +5,13 @@ import com.taylorswiftcn.megumi.uifactory.event.UIFEvent;
 import com.taylorswiftcn.megumi.uifactory.event.comp.*;
 import com.taylorswiftcn.megumi.uifactory.event.screen.*;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ClickType;
+import com.taylorswiftcn.megumi.uifactory.generate.type.SubmitParams;
 import eos.moe.dragoncore.api.gui.event.CustomPacketEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class PacketListener implements Listener {
@@ -60,6 +62,10 @@ public class PacketListener implements Listener {
                 break;
             case UIFScreenReloadEvent:
                 event = new UIFScreenReloadEvent(player, id);
+                break;
+            case UIFCompSubmitEvent:
+                SubmitParams params = new SubmitParams(new LinkedList<>(data.subList(1, data.size())));
+                event = new UIFCompSubmitEvent(player, id, params);
                 break;
 
             case UIFCompClickEvent:

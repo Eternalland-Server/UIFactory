@@ -15,6 +15,7 @@ public enum UIFEvent {
     UIFCompMouseLeaveEvent("UIFCompMouseLeaveEvent"),
     UIFCompMouseWheelEvent("UIFCompMouseWheelEvent"),
     UIFCompTextChangeEvent("UIFCompTextChangeEvent"),
+    UIFCompSubmitEvent("UIFCompSubmitEvent"),
 
     UIFScreenOpenEvent("UIFScreenOpenEvent"),
     UIFScreenCloseEvent("UIFScreenCloseEvent"),

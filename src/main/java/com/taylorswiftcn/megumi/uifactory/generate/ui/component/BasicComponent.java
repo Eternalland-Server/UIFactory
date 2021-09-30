@@ -1,6 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui.component;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
+import com.taylorswiftcn.megumi.uifactory.generate.type.SubmitParams;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.ButtonComp;
 import eos.moe.dragoncore.util.Utils;
 import lombok.Getter;
@@ -141,15 +142,16 @@ public abstract class BasicComponent implements IComponent {
                 String.format("func.Packet_Send('%s', '%s');", type.getEvent().getName(), getID()) :
                 String.format("func.Packet_Send('%s', '%s', %s);", type.getEvent().getName(), getID(), StringUtils.replace(type.getParam(), "%comp%", getID()));
 
-        if (this instanceof ButtonComp) {
-            eventStatement = String.format("!var.cancel ? { %s } : {};", eventStatement);
-        }
-
         return addAction(type, eventStatement);
     }
 
     public BasicComponent addAction(ActionType type, String statement) {
         actions.merge(type.getName(), statement, (a, b) -> a + "\n" + b);
+        return this;
+    }
+
+    public BasicComponent addAction(ActionType type, SubmitParams params) {
+        actions.merge(type.getName(), params.getPacket(getID()), (a, b) -> a + "\n" + b);
         return this;
     }
 
