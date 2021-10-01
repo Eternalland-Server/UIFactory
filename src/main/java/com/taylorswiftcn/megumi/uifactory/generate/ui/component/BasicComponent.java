@@ -1,7 +1,8 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui.component;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
-import com.taylorswiftcn.megumi.uifactory.generate.function.SubmitParams;
+import com.taylorswiftcn.megumi.uifactory.generate.type.SubmitParams;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.ButtonComp;
 import eos.moe.dragoncore.util.Utils;
 import lombok.Getter;
 import lombok.ToString;
@@ -150,7 +151,7 @@ public abstract class BasicComponent implements IComponent {
     }
 
     public BasicComponent addAction(ActionType type, SubmitParams params) {
-        actions.merge(type.getName(), params.build(getID()), (a, b) -> a + "\n" + b);
+        actions.merge(type.getName(), params.getPacket(getID()), (a, b) -> a + "\n" + b);
         return this;
     }
 

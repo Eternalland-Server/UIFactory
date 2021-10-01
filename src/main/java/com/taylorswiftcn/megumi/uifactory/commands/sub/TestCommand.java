@@ -3,10 +3,9 @@ package com.taylorswiftcn.megumi.uifactory.commands.sub;
 import com.taylorswiftcn.megumi.uifactory.commands.MegumiCommand;
 import com.taylorswiftcn.megumi.uifactory.commands.PermissionType;
 import com.taylorswiftcn.megumi.uifactory.file.sub.ConfigFile;
-import com.taylorswiftcn.megumi.uifactory.generate.function.Statements;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.FunctionType;
-import com.taylorswiftcn.megumi.uifactory.generate.function.SubmitParams;
+import com.taylorswiftcn.megumi.uifactory.generate.type.SubmitParams;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.UIFactory;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.ButtonComp;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.SlotComp;
@@ -39,22 +38,8 @@ public class TestCommand extends MegumiCommand {
                 .addComponent(new ButtonComp("ConfirmEvolve", "0,0,0,0", "75,75,75,155")
                         .setXY(175, 172)
                         .setCompSize(426 / 3.0, 113 / 3.0)
-                        .addAction(ActionType.Left_Release,
-                                new SubmitParams()
-                                        .setCondition("var.test != ''")
-                                        .add("var.test")
-                        )
+                        .addAction(ActionType.Left_Release, new SubmitParams().setCondition("var.test != ''").add("var.test"))
                         .addAction(ActionType.Left_Release, "func.message('Evolve success!')")
-                        .addAction(ActionType.Enter,
-                                new Statements()
-                                        .add(new SubmitParams()
-                                                .setCondition("var.test != ''")
-                                                .add("var.test")
-                                                .build("ConfirmEvolve")
-                                        )
-                                        .add("func.message('You sure you want an advanced weapon?');")
-                                        .build()
-                        )
                 );
 
         File file = new File(getPlugin().getDataFolder(), "test.yml");

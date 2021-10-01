@@ -1,7 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.event.comp;
 
 import com.taylorswiftcn.megumi.uifactory.event.UIFBaseEvent;
-import com.taylorswiftcn.megumi.uifactory.generate.function.SubmitParams;
+import com.taylorswiftcn.megumi.uifactory.generate.type.SubmitParams;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 
