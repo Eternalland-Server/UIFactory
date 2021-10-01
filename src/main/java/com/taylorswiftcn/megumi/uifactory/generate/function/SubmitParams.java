@@ -1,4 +1,4 @@
-package com.taylorswiftcn.megumi.uifactory.generate.type;
+package com.taylorswiftcn.megumi.uifactory.generate.function;
 
 import com.taylorswiftcn.megumi.uifactory.event.UIFEvent;
 
@@ -31,7 +31,7 @@ public class SubmitParams {
         return params.get(index);
     }
 
-    public String getPacket(String compID) {
+    public String build(String compID) {
         String params2str = String.join(", ", params);
         return (condition == null) ?
                 String.format("func.Packet_Send('%s', '%s', %s);", UIFEvent.UIFCompSubmitEvent.getName(), compID, params2str) :

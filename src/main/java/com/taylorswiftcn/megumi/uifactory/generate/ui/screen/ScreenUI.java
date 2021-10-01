@@ -144,7 +144,6 @@ public class ScreenUI extends BasicScreen {
     }
 
     public ScreenUI addFunctions(String funcName, String statement) {
-        String current = functions.get(funcName);
         functions.merge(funcName, statement, (a, b) -> a + "\n" + b);
         return this;
     }
