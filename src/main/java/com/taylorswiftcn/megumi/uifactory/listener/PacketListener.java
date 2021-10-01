@@ -5,7 +5,7 @@ import com.taylorswiftcn.megumi.uifactory.event.UIFEvent;
 import com.taylorswiftcn.megumi.uifactory.event.comp.*;
 import com.taylorswiftcn.megumi.uifactory.event.screen.*;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ClickType;
-import com.taylorswiftcn.megumi.uifactory.generate.type.SubmitParams;
+import com.taylorswiftcn.megumi.uifactory.generate.function.SubmitParams;
 import eos.moe.dragoncore.api.gui.event.CustomPacketEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -1,4 +1,4 @@
-package com.taylorswiftcn.megumi.uifactory.generate.type;
+package com.taylorswiftcn.megumi.uifactory.generate.function;
 
 import com.taylorswiftcn.megumi.uifactory.event.UIFEvent;
 

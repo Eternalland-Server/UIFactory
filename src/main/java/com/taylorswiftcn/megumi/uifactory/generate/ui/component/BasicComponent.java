@@ -1,8 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui.component;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
-import com.taylorswiftcn.megumi.uifactory.generate.type.SubmitParams;
-import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.ButtonComp;
+import com.taylorswiftcn.megumi.uifactory.generate.function.SubmitParams;
 import eos.moe.dragoncore.util.Utils;
 import lombok.Getter;
 import lombok.ToString;
