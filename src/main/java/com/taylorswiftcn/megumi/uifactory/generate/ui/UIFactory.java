@@ -19,10 +19,7 @@ public class UIFactory {
         YamlConfiguration yaml = screen.build(player);
 
         PacketSender.sendYaml(player, String.format("Gui/%s.yml", screen.getID()), yaml);
-        if (screen.getMatch().equalsIgnoreCase("hud")) {
-            PacketSender.sendOpenHud(player, screen.getID());
-        }
-        else {
+        if (screen.getMatch() == null) {
             PacketSender.sendOpenGui(player, screen.getID());
         }
     }
