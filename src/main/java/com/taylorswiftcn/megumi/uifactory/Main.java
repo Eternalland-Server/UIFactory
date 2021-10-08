@@ -3,7 +3,6 @@ package com.taylorswiftcn.megumi.uifactory;
 import com.taylorswiftcn.megumi.uifactory.commands.MainCommand;
 import com.taylorswiftcn.megumi.uifactory.file.FileManager;
 import com.taylorswiftcn.megumi.uifactory.listener.PacketListener;
-import com.taylorswiftcn.megumi.uifactory.listener.TestListener;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
