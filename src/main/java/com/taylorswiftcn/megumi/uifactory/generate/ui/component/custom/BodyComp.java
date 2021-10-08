@@ -8,6 +8,14 @@ import lombok.EqualsAndHashCode;
 @ComponentField(define = "texture")
 public class BodyComp extends TextureComp {
 
+    public BodyComp() {
+        super("body");
+    }
+
+    public BodyComp(String id) {
+        super(id, null);
+    }
+
     public BodyComp(String id, String texture) {
         super(id, texture);
     }

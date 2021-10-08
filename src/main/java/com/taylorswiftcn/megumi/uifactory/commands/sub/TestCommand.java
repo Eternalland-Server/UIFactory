@@ -26,7 +26,7 @@ public class TestCommand extends MegumiCommand {
         ScreenUI ui = new ScreenUI("test")
                 .setAllowEsc(true)
                 .setPressEKeyClose()
-                .generateContainerSlot(69.5, 240.5, 1.3, 10, 10)
+                .generateContainerSlot("75,75,75,155", 69.5, 240.5, 1.3, 1, 1, 10, 10, 12d)
                 .addFunctions(FunctionType.Open)
                 .addFunctions(FunctionType.Open, "var.test = 'test'")
                 .addComponent(new BodyComp("body", "255,255,255,155").setCenter().setCompSize(1222.0 / 3.0, 1121.0 / 3.0))

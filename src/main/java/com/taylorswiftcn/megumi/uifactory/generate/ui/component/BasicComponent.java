@@ -211,9 +211,21 @@ public abstract class BasicComponent implements IComponent {
         return this;
     }
 
+    public BasicComponent setCompSize(double size) {
+        this.width = String.valueOf(size);
+        this.height = String.valueOf(size);
+        return this;
+    }
+
     public BasicComponent setCompSize(double width, double height) {
         this.width = String.valueOf(width);
         this.height = String.valueOf(height);
+        return this;
+    }
+
+    public BasicComponent setCompSize(String size) {
+        this.width = size;
+        this.height = size;
         return this;
     }
 

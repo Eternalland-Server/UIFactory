@@ -37,6 +37,10 @@ public class TextureComp extends BasicComponent {
     @ComponentField(define = "font")
     private String textFont;
 
+    public TextureComp(String id) {
+        this(id, null, null, null, null);
+    }
+
     public TextureComp(String id, String texture) {
         this(id, texture, null, null, null);
     }
