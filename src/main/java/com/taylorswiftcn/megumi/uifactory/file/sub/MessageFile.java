@@ -1,6 +1,6 @@
 package com.taylorswiftcn.megumi.uifactory.file.sub;
 
-import com.taylorswiftcn.megumi.uifactory.Main;
+import com.taylorswiftcn.megumi.uifactory.UIFactoryPlugin;
 import com.taylorswiftcn.megumi.uifactory.util.MegumiUtil;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -15,7 +15,7 @@ public class MessageFile {
     public static String NoPermission;
 
     public static void init() {
-        message = Main.getInstance().getFileManager().getMessage();
+        message = UIFactoryPlugin.getInstance().getFileManager().getMessage();
 
         Help = getStringList("Help");
         AdminHelp = getStringList("AdminHelp");

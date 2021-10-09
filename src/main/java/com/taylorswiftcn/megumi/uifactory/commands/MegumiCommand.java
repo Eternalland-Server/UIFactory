@@ -1,18 +1,18 @@
 package com.taylorswiftcn.megumi.uifactory.commands;
 
-import com.taylorswiftcn.megumi.uifactory.Main;
+import com.taylorswiftcn.megumi.uifactory.UIFactoryPlugin;
 import com.taylorswiftcn.megumi.uifactory.file.sub.ConfigFile;
 import com.taylorswiftcn.megumi.uifactory.file.sub.MessageFile;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public abstract class MegumiCommand {
-    private Main plugin;
+    private UIFactoryPlugin plugin;
     private boolean isPlayer;
     private Player player;
 
     public final void execute(CommandSender commandSender, String[] strings) {
-        this.plugin = Main.getInstance();
+        this.plugin = UIFactoryPlugin.getInstance();
         this.isPlayer = commandSender instanceof Player;
         if (isPlayer) player = (Player) commandSender;
         if (playerOnly() && !isPlayer) return;
@@ -23,7 +23,7 @@ public abstract class MegumiCommand {
         perform(commandSender, strings);
     }
 
-    public Main getPlugin() {
+    public UIFactoryPlugin getPlugin() {
         return plugin;
     }
 

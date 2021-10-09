@@ -1,6 +1,6 @@
 package com.taylorswiftcn.megumi.uifactory.util;
 
-import com.taylorswiftcn.megumi.uifactory.Main;
+import com.taylorswiftcn.megumi.uifactory.UIFactoryPlugin;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -15,7 +15,7 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class MegumiUtil {
-    private static Main plugin = Main.getInstance();
+    private static UIFactoryPlugin plugin = UIFactoryPlugin.getInstance();
 
     public static void log(String s) {
         plugin.getLogger().info(s);
@@ -42,7 +42,7 @@ public class MegumiUtil {
     }
 
     public static boolean isFloat(String a) {
-        Pattern pattern = Pattern.compile("^[-\\+]?[.\\d]*$");
+        Pattern pattern = Pattern.compile("^[-+]?[.\\d]*$");
         return pattern.matcher(a).matches();
     }
 

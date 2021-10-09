@@ -3,18 +3,18 @@ package com.taylorswiftcn.megumi.uifactory.file;
 import com.taylorswiftcn.megumi.uifactory.file.sub.ConfigFile;
 import com.taylorswiftcn.megumi.uifactory.file.sub.MessageFile;
 import com.taylorswiftcn.megumi.uifactory.util.MegumiUtil;
-import com.taylorswiftcn.megumi.uifactory.Main;
+import com.taylorswiftcn.megumi.uifactory.UIFactoryPlugin;
 import lombok.Getter;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 
 public class FileManager {
-    private Main plugin;
+    private UIFactoryPlugin plugin;
     @Getter private YamlConfiguration config;
     @Getter private YamlConfiguration message;
 
-    public FileManager(Main plugin) {
+    public FileManager(UIFactoryPlugin plugin) {
         this.plugin = plugin;
     }
 

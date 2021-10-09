@@ -1,6 +1,6 @@
 package com.taylorswiftcn.megumi.uifactory.file.sub;
 
-import com.taylorswiftcn.megumi.uifactory.Main;
+import com.taylorswiftcn.megumi.uifactory.UIFactoryPlugin;
 import com.taylorswiftcn.megumi.uifactory.util.MegumiUtil;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -12,7 +12,7 @@ public class ConfigFile {
     public static String Prefix;
 
     public static void init() {
-        config = Main.getInstance().getFileManager().getConfig();
+        config = UIFactoryPlugin.getInstance().getFileManager().getConfig();
 
         Prefix = getString("Prefix");
     }

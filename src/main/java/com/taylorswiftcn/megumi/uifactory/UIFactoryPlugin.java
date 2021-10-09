@@ -7,8 +7,8 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
-    @Getter private static Main instance;
+public class UIFactoryPlugin extends JavaPlugin {
+    @Getter private static UIFactoryPlugin instance;
 
     @Getter private FileManager fileManager;
 
