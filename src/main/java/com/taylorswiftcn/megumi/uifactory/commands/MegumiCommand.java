@@ -1,8 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.commands;
 
 import com.taylorswiftcn.megumi.uifactory.UIFactoryPlugin;
-import com.taylorswiftcn.megumi.uifactory.file.sub.ConfigFile;
-import com.taylorswiftcn.megumi.uifactory.file.sub.MessageFile;
+import com.taylorswiftcn.megumi.uifactory.util.MegumiUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -17,7 +16,7 @@ public abstract class MegumiCommand {
         if (isPlayer) player = (Player) commandSender;
         if (playerOnly() && !isPlayer) return;
         if (getPermission() != null && !commandSender.hasPermission(getPermission())) {
-            commandSender.sendMessage(ConfigFile.Prefix + MessageFile.NoPermission.replace("%s%",getPermission()));
+            commandSender.sendMessage(MegumiUtil.onReplace("&7&l[UIFactory]" + "&c你没有权限:" + getPermission()));
             return;
         }
         perform(commandSender, strings);

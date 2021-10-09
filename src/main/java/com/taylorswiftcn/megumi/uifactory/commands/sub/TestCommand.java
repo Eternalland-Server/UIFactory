@@ -2,7 +2,6 @@ package com.taylorswiftcn.megumi.uifactory.commands.sub;
 
 import com.taylorswiftcn.megumi.uifactory.commands.MegumiCommand;
 import com.taylorswiftcn.megumi.uifactory.commands.PermissionType;
-import com.taylorswiftcn.megumi.uifactory.file.sub.ConfigFile;
 import com.taylorswiftcn.megumi.uifactory.generate.function.Statements;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.FunctionType;
@@ -64,7 +63,7 @@ public class TestCommand extends MegumiCommand {
         }
 
         UIFactory.open(player, ui);
-        player.sendMessage(ConfigFile.Prefix + "done!");
+        player.sendMessage("&7&l[UIFactory]&adone!");
     }
 
     @Override
