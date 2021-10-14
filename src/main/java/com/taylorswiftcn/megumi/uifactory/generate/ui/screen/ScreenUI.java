@@ -39,8 +39,8 @@ public class ScreenUI extends BasicScreen {
      * 生成背包槽
      *
      * @param slotTexture     槽位背景图片
-     * @param x               x
-     * @param y               y
+     * @param x               x起点
+     * @param y               y起点
      * @param scale           尺寸
      * @param slotOffsetX     slot组件x偏移值
      * @param slotOffsetY     slot组件y偏移值
@@ -63,6 +63,40 @@ public class ScreenUI extends BasicScreen {
                                 .setXY(slotX, slotY).setCompSize(18 * scale, 18 * scale)
                         )
                         .addComponent(container.setXY(slotX + slotOffsetX, slotY + slotOffsetY).setScale(scale));
+            }
+        }
+
+        return this;
+    }
+
+    /**
+     * 生成背包槽
+     *
+     * @param slotTexture     槽位背景图片
+     * @param x               x起点
+     * @param y               y起点
+     * @param scale           尺寸
+     * @param slotOffsetX     slot组件x偏移值
+     * @param slotOffsetY     slot组件y偏移值
+     * @param lineSpace       行间距
+     * @param columnSpace     列间距
+     * @param lastColumnSpace 最后两列间距
+     * @return {@link ScreenUI}
+     */
+    public ScreenUI generateContainerSlot(String slotTexture, String x, String y, double scale, double slotOffsetX, double slotOffsetY, double lineSpace, double columnSpace, Double lastColumnSpace) {
+        for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < 9; i++) {
+                double slotX = (16 * scale + lineSpace) * i;
+                double slotY = (16 * scale + ((j == 3 && lastColumnSpace != null) ? lastColumnSpace : columnSpace)) * j;
+                int index = (j + 1) * 9 + i;
+                BasicComponent container = SlotComp.getOriginSlot(index);
+                if (container == null) continue;
+                this
+                        .addComponent(new TextureComp("slot_bg_" + index)
+                                .setTexture(slotTexture)
+                                .setXY(slotX, slotY).setCompSize(18 * scale, 18 * scale)
+                        )
+                        .addComponent(container.setXY(String.format("%s+%s+%s", x, slotX, slotOffsetX), String.format("%s+%s+%s", y, slotY, slotOffsetY)).setScale(scale));
             }
         }
 
