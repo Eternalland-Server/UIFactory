@@ -1,5 +1,5 @@
 name: UIFactory
-main: com.taylorswiftcn.megumi.uifactory.Main
+main: com.taylorswiftcn.megumi.uifactory.UIFactoryPlugin
 version: ${project.version}
 author: 'Megumi'
 api-version: '1.13'

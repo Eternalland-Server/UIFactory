@@ -14,12 +14,12 @@ public class UIFactory {
     private static Map<UUID, ScreenUI> playerScreens = new ConcurrentHashMap<>();
 
     public static void open(Player player, ScreenUI screen) {
-        closeScreen(player);
-        playerScreens.put(player.getUniqueId(), screen);
         YamlConfiguration yaml = screen.build(player);
-
         PacketSender.sendYaml(player, String.format("Gui/%s.yml", screen.getID()), yaml);
+
         if (screen.getMatch() == null) {
+            closeScreen(player);
+            playerScreens.put(player.getUniqueId(), screen);
             PacketSender.sendOpenGui(player, screen.getID());
         }
     }
