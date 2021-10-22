@@ -59,7 +59,7 @@ public abstract class BasicComponent implements IComponent {
     private Double currentMoveY;
 
     @ComponentField(define = "visible")
-    private Boolean visible;
+    private String visible;
 
     @ComponentField(define = "enable")
     private Boolean enable;
@@ -68,7 +68,7 @@ public abstract class BasicComponent implements IComponent {
     private Double alpha;
 
     @ComponentField(define = "scale")
-    private Double scale;
+    private String scale;
 
     @ComponentField(define = "tip")
     private List<String> tip;
@@ -306,6 +306,11 @@ public abstract class BasicComponent implements IComponent {
     }
 
     public BasicComponent setVisible(boolean visible) {
+        this.visible = String.valueOf(visible);
+        return this;
+    }
+
+    public BasicComponent setVisible(String visible) {
         this.visible = visible;
         return this;
     }
@@ -321,6 +326,11 @@ public abstract class BasicComponent implements IComponent {
     }
 
     public BasicComponent setScale(double scale) {
+        this.scale = String.valueOf(scale);
+        return this;
+    }
+
+    public BasicComponent setScale(String scale) {
         this.scale = scale;
         return this;
     }

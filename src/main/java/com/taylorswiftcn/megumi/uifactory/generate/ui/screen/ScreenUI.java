@@ -27,11 +27,13 @@ public class ScreenUI extends BasicScreen {
     private Boolean allowThrough;
     private Boolean allowEsc;
     private List<HudType> hideHUD;
+    private List<String> imports;
     private HashMap<String, String> functions;
 
     public ScreenUI(String id) {
         super(id);
         this.hideHUD = new ArrayList<>();
+        this.imports = new ArrayList<>();
         this.functions = new HashMap<>();
     }
 
@@ -120,14 +122,15 @@ public class ScreenUI extends BasicScreen {
 
         List<String> hideList = new ArrayList<>();
         hideHUD.forEach(element -> hideList.add(element.getName()));
-        yaml.set("hideHud", hideList.size() == 0 ? null : hideList);
+        yaml.set("hideHud", hideList.isEmpty() ? null : hideList);
 
-        yaml.set("Functions", functions.size() == 0 ? null : functions);
+        yaml.set("import", imports.isEmpty() ? null : imports);
+        yaml.set("Functions", functions.isEmpty() ? null : functions);
 
         getComponents().forEach((id, component) -> {
             if (component instanceof SlotComp) {
                 SlotComp comp = (SlotComp) component;
-                if (!comp.getIdentifier().startsWith("container_")) {
+                if (!comp.getIdentifier().startsWith("container_") && player != null) {
                     ItemStack item = SlotAPI.getCacheSlotItem(player, comp.getIdentifier());
                     PacketSender.putClientSlotItem(player, comp.getIdentifier(), item);
                 }
@@ -183,6 +186,16 @@ public class ScreenUI extends BasicScreen {
 
     public ScreenUI addHideHUD(HudType type) {
         if (!this.hideHUD.contains(type)) this.hideHUD.add(type);
+        return this;
+    }
+
+    public ScreenUI addImports(String screenID) {
+        imports.add(screenID);
+        return this;
+    }
+
+    public ScreenUI addImports(List<String> screens) {
+        imports.addAll(screens);
         return this;
     }
 
