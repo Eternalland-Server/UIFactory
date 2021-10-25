@@ -34,7 +34,7 @@ public class SubmitParams {
     public String getPacket(String compID) {
         String params2str = String.join(", ", params);
         return (condition == null) ?
-                String.format("func.Packet_Send('%s', '%s', %s);", UIFEvent.UIFCompSubmitEvent.getName(), compID, params2str) :
-                String.format("(%s) ? { func.Packet_Send('%s', '%s', %s); } : {};", condition, UIFEvent.UIFCompSubmitEvent.getName(), compID, params2str);
+                String.format("func.Packet_Send('%s', var.screenID, '%s', %s);", UIFEvent.UIFCompSubmitEvent.getName(), compID, params2str) :
+                String.format("(%s) ? { func.Packet_Send('%s', var.screenID, '%s', %s); } : {};", condition, UIFEvent.UIFCompSubmitEvent.getName(), compID, params2str);
     }
 }
