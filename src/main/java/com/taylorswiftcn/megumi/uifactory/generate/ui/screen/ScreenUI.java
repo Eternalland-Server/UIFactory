@@ -202,8 +202,8 @@ public class ScreenUI extends BasicScreen {
 
     public ScreenUI addFunctions(FunctionType type) {
         String eventStatement = type.getParam() == null ?
-                String.format("func.Packet_Send('%s', 'var.screenID', '%s');", type.getEvent().getName(), getID()) :
-                String.format("func.Packet_Send('%s', 'var.screenID', '%s', %s);", type.getEvent().getName(), getID(), type.getParam());
+                String.format("func.Packet_Send('%s', var.screenID,);", type.getEvent().getName()) :
+                String.format("func.Packet_Send('%s', var.screenID, %s);", type.getEvent().getName(), type.getParam());
 
         return addFunctions(type, eventStatement);
     }

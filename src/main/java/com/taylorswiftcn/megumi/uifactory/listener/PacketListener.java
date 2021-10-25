@@ -26,7 +26,7 @@ public class PacketListener implements Listener {
         if (eventTarget == null) return;
 
         String screenID = data.get(0);
-        String compID = data.get(0);
+        String compID = data.get(1);
 
         UIFBaseEvent event = null;
 

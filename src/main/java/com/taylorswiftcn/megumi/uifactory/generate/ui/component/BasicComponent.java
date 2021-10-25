@@ -138,8 +138,8 @@ public abstract class BasicComponent implements IComponent {
 
     public BasicComponent addAction(ActionType type) {
         String eventStatement = type.getParam() == null ?
-                String.format("func.Packet_Send('%s', '%s');", type.getEvent().getName(), getID()) :
-                String.format("func.Packet_Send('%s', '%s', %s);", type.getEvent().getName(), getID(), StringUtils.replace(type.getParam(), "%comp%", getID()));
+                String.format("func.Packet_Send('%s', var.screenID, '%s');", type.getEvent().getName(), getID()) :
+                String.format("func.Packet_Send('%s', var.screenID, '%s', %s);", type.getEvent().getName(), getID(), StringUtils.replace(type.getParam(), "%comp%", getID()));
 
         return addAction(type, eventStatement);
     }
