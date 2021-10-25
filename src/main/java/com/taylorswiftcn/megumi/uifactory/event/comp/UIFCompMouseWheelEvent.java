@@ -1,18 +1,16 @@
 package com.taylorswiftcn.megumi.uifactory.event.comp;
 
-import com.taylorswiftcn.megumi.uifactory.event.UIFBaseEvent;
+import com.taylorswiftcn.megumi.uifactory.event.UIFCompEvent;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 
-public class UIFCompMouseWheelEvent extends UIFBaseEvent {
+public class UIFCompMouseWheelEvent extends UIFCompEvent {
 
-    private final int value;
+    @Getter private final int value;
 
-    public UIFCompMouseWheelEvent(Player player, String compID, int value) {
-        super(player, compID);
+    public UIFCompMouseWheelEvent(Player player, String screenID, String compID, int value) {
+        super(player, screenID, compID);
         this.value = value;
     }
 
-    public int getValue() {
-        return value;
-    }
 }

@@ -5,18 +5,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.player.PlayerEvent;
 
 @Getter
-public abstract class UIFBaseEvent extends Event {
+public abstract class UIFBaseEvent extends PlayerEvent {
 
-    private final Player player;
-    private final String id;
+    private final String screenID;
 
     private static final HandlerList handlerList = new HandlerList();
 
-    public UIFBaseEvent(Player player, String id) {
-        this.player = player;
-        this.id = id;
+    public UIFBaseEvent(Player player, String screenID) {
+        super(player);
+        this.screenID = screenID;
     }
 
     public static HandlerList getHandlerList() {

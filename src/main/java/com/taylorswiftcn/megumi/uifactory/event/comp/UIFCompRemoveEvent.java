@@ -1,12 +1,12 @@
 package com.taylorswiftcn.megumi.uifactory.event.comp;
 
-import com.taylorswiftcn.megumi.uifactory.event.UIFBaseEvent;
+import com.taylorswiftcn.megumi.uifactory.event.UIFCompEvent;
 import org.bukkit.entity.Player;
 
-public class UIFCompRemoveEvent extends UIFBaseEvent {
+public class UIFCompRemoveEvent extends UIFCompEvent {
 
-    public UIFCompRemoveEvent(Player player, String compID) {
-        super(player, compID);
+    public UIFCompRemoveEvent(Player player, String screenID, String compID) {
+        super(player, screenID, compID);
     }
 
 }

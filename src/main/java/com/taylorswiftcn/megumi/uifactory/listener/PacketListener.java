@@ -25,76 +25,71 @@ public class PacketListener implements Listener {
         UIFEvent eventTarget = UIFEvent.getEvent(eventName);
         if (eventTarget == null) return;
 
-        String id = data.get(0);
+        String screenID = data.get(0);
+        String compID = data.get(0);
 
         UIFBaseEvent event = null;
 
         switch (eventTarget) {
             case UIFCompCreateEvent:
-                event = new UIFCompCreateEvent(player, id);
+                event = new UIFCompCreateEvent(player, screenID, compID);
                 break;
             case UIFCompRemoveEvent:
-                event = new UIFCompRemoveEvent(player, id);
-                break;
-            case UIFCompPreRenderEvent:
-                event = new UIFCompPreRenderEvent(player, id);
-                break;
-            case UIFCompPostRenderEvent:
-                event = new UIFCompPostRenderEvent(player, id);
+                event = new UIFCompRemoveEvent(player, screenID, compID);
                 break;
             case UIFCompMouseEnterEvent:
-                event = new UIFCompMouseEnterEvent(player, id);
+                event = new UIFCompMouseEnterEvent(player, screenID, compID);
                 break;
             case UIFCompMouseLeaveEvent:
-                event = new UIFCompMouseLeaveEvent(player, id);
+                event = new UIFCompMouseLeaveEvent(player, screenID, compID);
                 break;
             case UIFScreenOpenEvent:
-                event = new UIFScreenOpenEvent(player, id);
+                event = new UIFScreenOpenEvent(player, screenID);
                 break;
             case UIFScreenCloseEvent:
-                event = new UIFScreenCloseEvent(player, id);
+                event = new UIFScreenCloseEvent(player, screenID);
                 break;
             case UIFScreenChatOpenEvent:
-                event = new UIFScreenChatOpenEvent(player, id);
+                event = new UIFScreenChatOpenEvent(player, screenID);
                 break;
             case UIFScreenChatCloseEvent:
-                event = new UIFScreenChatCloseEvent(player, id);
+                event = new UIFScreenChatCloseEvent(player, screenID);
                 break;
             case UIFScreenReloadEvent:
-                event = new UIFScreenReloadEvent(player, id);
+                event = new UIFScreenReloadEvent(player, screenID);
                 break;
             case UIFCompSubmitEvent:
                 SubmitParams params = new SubmitParams(new LinkedList<>(data.subList(1, data.size())));
-                event = new UIFCompSubmitEvent(player, id, params);
+                event = new UIFCompSubmitEvent(player, screenID, compID, params);
                 break;
 
             case UIFCompClickEvent:
-                ClickType typeA = ClickType.valueOf(data.get(1));
-                event = new UIFCompClickEvent(player, id, typeA);
+                ClickType typeA = ClickType.valueOf(data.get(2));
+                event = new UIFCompClickEvent(player, screenID, compID, typeA);
                 break;
             case UIFCompClickReleaseEvent:
-                ClickType typeB = ClickType.valueOf(data.get(1));
-                event = new UIFCompClickReleaseEvent(player, id, typeB);
+                ClickType typeB = ClickType.valueOf(data.get(2));
+                event = new UIFCompClickReleaseEvent(player, screenID, compID, typeB);
                 break;
             case UIFCompMouseWheelEvent:
-                int valueA = Integer.parseInt(data.get(1));
-                event = new UIFCompMouseWheelEvent(player, id, valueA);
+                int valueA = Integer.parseInt(data.get(2));
+                event = new UIFCompMouseWheelEvent(player, screenID, compID, valueA);
                 break;
             case UIFCompTextChangeEvent:
-                String text = data.get(1);
-                event = new UIFCompTextChangeEvent(player, id, text);
+                String text = data.get(2);
+                event = new UIFCompTextChangeEvent(player, screenID, compID, text);
                 break;
             case UIFScreenKeyPressEvent:
-                String key = data.get(1);
-                event = new UIFScreenKeyPressEvent(player, id, key);
+                String key = data.get(2);
+                event = new UIFScreenKeyPressEvent(player, screenID, key);
                 break;
             case UIFScreenMouseWheelEvent:
-                int valueB = Integer.parseInt(data.get(1));
-                event = new UIFScreenMouseWheelEvent(player, id, valueB);
+                int valueB = Integer.parseInt(data.get(2));
+                event = new UIFScreenMouseWheelEvent(player, screenID, valueB);
                 break;
             case UIFScreenReceiveMsgEvent:
-                String msg = data.get(1);
-                event = new UIFScreenReceiveMsgEvent(player, id, msg);
+                String msg = data.get(2);
+                event = new UIFScreenReceiveMsgEvent(player, screenID, msg);
             default:
                 break;
         }

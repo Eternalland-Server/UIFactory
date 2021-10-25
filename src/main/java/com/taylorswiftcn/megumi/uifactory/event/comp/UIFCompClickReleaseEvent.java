@@ -1,22 +1,19 @@
 package com.taylorswiftcn.megumi.uifactory.event.comp;
 
-import com.taylorswiftcn.megumi.uifactory.event.UIFBaseEvent;
+import com.taylorswiftcn.megumi.uifactory.event.UIFCompEvent;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ClickType;
+import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
-public class UIFCompClickReleaseEvent extends UIFBaseEvent implements Cancellable {
+public class UIFCompClickReleaseEvent extends UIFCompEvent implements Cancellable {
 
-    private final ClickType clickType;
+    @Getter private final ClickType clickType;
     private boolean cancel = false;
 
-    public UIFCompClickReleaseEvent(Player player, String compID, ClickType clickType) {
-        super(player, compID);
+    public UIFCompClickReleaseEvent(Player player, String screenID, String compID, ClickType clickType) {
+        super(player, screenID, compID);
         this.clickType = clickType;
-    }
-
-    public ClickType getClickType() {
-        return clickType;
     }
 
     @Override

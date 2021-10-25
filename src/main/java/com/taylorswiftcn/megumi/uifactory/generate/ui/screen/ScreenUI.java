@@ -26,15 +26,16 @@ public class ScreenUI extends BasicScreen {
     private Boolean interactHUD;
     private Boolean allowThrough;
     private Boolean allowEsc;
-    private List<HudType> hideHUD;
-    private List<String> imports;
-    private HashMap<String, String> functions;
+    private final List<HudType> hideHUD;
+    private final List<String> imports;
+    private final HashMap<String, String> functions;
 
     public ScreenUI(String id) {
         super(id);
         this.hideHUD = new ArrayList<>();
         this.imports = new ArrayList<>();
         this.functions = new HashMap<>();
+        this.addFunctions(FunctionType.Open, "var.screenID = '" + id + "'");
     }
 
     /**
@@ -201,8 +202,8 @@ public class ScreenUI extends BasicScreen {
 
     public ScreenUI addFunctions(FunctionType type) {
         String eventStatement = type.getParam() == null ?
-                String.format("func.Packet_Send('%s','%s');", type.getEvent().getName(), getID()) :
-                String.format("func.Packet_Send('%s','%s', %s);", type.getEvent().getName(), getID(), type.getParam());
+                String.format("func.Packet_Send('%s', 'var.screenID', '%s');", type.getEvent().getName(), getID()) :
+                String.format("func.Packet_Send('%s', 'var.screenID', '%s', %s);", type.getEvent().getName(), getID(), type.getParam());
 
         return addFunctions(type, eventStatement);
     }
