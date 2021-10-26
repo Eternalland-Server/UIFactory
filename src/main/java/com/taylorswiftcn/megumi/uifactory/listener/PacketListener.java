@@ -1,6 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.listener;
 
 import com.taylorswiftcn.megumi.uifactory.event.UIFBaseEvent;
+import com.taylorswiftcn.megumi.uifactory.event.UIFCompEvent;
 import com.taylorswiftcn.megumi.uifactory.event.UIFEvent;
 import com.taylorswiftcn.megumi.uifactory.event.comp.*;
 import com.taylorswiftcn.megumi.uifactory.event.screen.*;
@@ -26,7 +27,8 @@ public class PacketListener implements Listener {
         if (eventTarget == null) return;
 
         String screenID = data.get(0);
-        String compID = data.get(1);
+        String compID = null;
+        if (data.size() > 1) compID = data.get(1);
 
         UIFBaseEvent event = null;
 

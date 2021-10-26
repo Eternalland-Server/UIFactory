@@ -35,7 +35,7 @@ public class ScreenUI extends BasicScreen {
         this.hideHUD = new ArrayList<>();
         this.imports = new ArrayList<>();
         this.functions = new HashMap<>();
-        this.addFunctions(FunctionType.Open, "var.screenID = '" + id + "'");
+        this.addFunctions(FunctionType.Open, "var.screenID = '" + id + "';");
     }
 
     /**
@@ -202,7 +202,7 @@ public class ScreenUI extends BasicScreen {
 
     public ScreenUI addFunctions(FunctionType type) {
         String eventStatement = type.getParam() == null ?
-                String.format("func.Packet_Send('%s', var.screenID,);", type.getEvent().getName()) :
+                String.format("func.Packet_Send('%s', var.screenID);", type.getEvent().getName()) :
                 String.format("func.Packet_Send('%s', var.screenID, %s);", type.getEvent().getName(), type.getParam());
 
         return addFunctions(type, eventStatement);

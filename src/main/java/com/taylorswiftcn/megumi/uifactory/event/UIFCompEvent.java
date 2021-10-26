@@ -3,7 +3,7 @@ package com.taylorswiftcn.megumi.uifactory.event;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 
-public class UIFCompEvent extends UIFBaseEvent {
+public abstract class UIFCompEvent extends UIFBaseEvent {
 
     @Getter private final String compID;
 
