@@ -1,6 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui;
 
 import com.taylorswiftcn.megumi.uifactory.generate.ui.screen.ScreenUI;
+import eos.moe.dragoncore.config.FolderType;
 import eos.moe.dragoncore.network.PacketSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ public class UIFactory {
 
     public static void open(Player player, ScreenUI screen) {
         YamlConfiguration yaml = screen.build(player);
-        PacketSender.sendYaml(player, String.format("Gui/%s.yml", screen.getID()), yaml);
+        PacketSender.sendYaml(player, FolderType.Gui, screen.getID(), yaml);
 
         if (screen.getMatch() == null) {
             closeScreen(player);
