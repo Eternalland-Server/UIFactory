@@ -1,0 +1,30 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  tags:
+    - maven
+  script:
+    - mvn clean package -Dmaven.javadoc.skip=true
+  except:
+    - master
+    - main
+  artifacts:
+    paths:
+      - target/*.jar
+
+deploy:
+  # Deploy to repos
+  stage: deploy
+  tags:
+    - maven
+  script:
+    - mvn clean deploy -DskipTests # No need for tests.
+  only:
+    - master
+    - main
+  artifacts:
+    paths:
+      - target/*.jar
