@@ -14,9 +14,12 @@ public abstract class MegumiCommand {
         this.plugin = UIFactoryPlugin.getInstance();
         this.isPlayer = commandSender instanceof Player;
         if (isPlayer) player = (Player) commandSender;
-        if (playerOnly() && !isPlayer) return;
+        if (playerOnly() && !isPlayer) {
+            commandSender.sendMessage(MegumiUtil.onReplace(" &7控制台无法使用该命令"));
+            return;
+        }
         if (getPermission() != null && !commandSender.hasPermission(getPermission())) {
-            commandSender.sendMessage(MegumiUtil.onReplace("&7&l[UIFactory]" + "&c你没有权限:" + getPermission()));
+            commandSender.sendMessage(MegumiUtil.onReplace(" &7你没有权限: &a" + getPermission()));
             return;
         }
         perform(commandSender, strings);
