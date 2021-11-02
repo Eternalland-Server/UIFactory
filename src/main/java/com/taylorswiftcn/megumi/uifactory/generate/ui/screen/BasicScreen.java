@@ -3,6 +3,7 @@ package com.taylorswiftcn.megumi.uifactory.generate.ui.screen;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.IComponent;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public abstract class BasicScreen implements IScreen {
@@ -33,6 +34,11 @@ public abstract class BasicScreen implements IScreen {
     @Override
     public BasicScreen addComponent(IComponent component) {
         components.put(component.getID(), component);
+        return this;
+    }
+
+    @Override
+    public IScreen addComponents(List<IComponent> components) {
         return this;
     }
 }

@@ -4,6 +4,7 @@ import com.taylorswiftcn.megumi.uifactory.generate.ui.component.IComponent;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IScreen {
@@ -15,6 +16,8 @@ public interface IScreen {
     IComponent getComponent(String id);
 
     IScreen addComponent(IComponent component);
+
+    IScreen addComponents(List<IComponent> components);
 
     YamlConfiguration build(Player player);
 }

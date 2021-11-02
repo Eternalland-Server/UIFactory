@@ -150,6 +150,12 @@ public class ScreenUI extends BasicScreen {
         return this;
     }
 
+    @Override
+    public IScreen addComponents(List<IComponent> components) {
+        super.addComponents(components);
+        return this;
+    }
+
     public ScreenUI setMatch(String match) {
         this.match = match;
         return this;
