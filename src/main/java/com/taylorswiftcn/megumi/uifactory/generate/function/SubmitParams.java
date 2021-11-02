@@ -27,7 +27,7 @@ public class SubmitParams {
         return this;
     }
 
-    public String getParams(int index) {
+    public String getParam(int index) {
         return params.get(index);
     }
 
