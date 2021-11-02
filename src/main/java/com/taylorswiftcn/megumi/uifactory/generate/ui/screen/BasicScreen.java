@@ -33,12 +33,13 @@ public abstract class BasicScreen implements IScreen {
 
     @Override
     public BasicScreen addComponent(IComponent component) {
-        components.put(component.getID(), component);
+        this.components.put(component.getID(), component);
         return this;
     }
 
     @Override
-    public IScreen addComponents(List<IComponent> components) {
+    public IScreen addComponents(Map<String, IComponent> components) {
+        this.components.putAll(components);
         return this;
     }
 }

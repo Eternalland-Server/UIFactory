@@ -151,7 +151,7 @@ public class ScreenUI extends BasicScreen {
     }
 
     @Override
-    public IScreen addComponents(List<IComponent> components) {
+    public ScreenUI addComponents(Map<String, IComponent> components) {
         super.addComponents(components);
         return this;
     }

@@ -17,7 +17,7 @@ public interface IScreen {
 
     IScreen addComponent(IComponent component);
 
-    IScreen addComponents(List<IComponent> components);
+    IScreen addComponents(Map<String, IComponent> components);
 
     YamlConfiguration build(Player player);
 }
