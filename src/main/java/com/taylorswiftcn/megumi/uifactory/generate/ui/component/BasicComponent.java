@@ -91,7 +91,10 @@ public abstract class BasicComponent implements IComponent {
     @ComponentField(define = "fy")
     private Double offsetY;
 
-    private HashMap<String, String> actions;
+    @ComponentField(define = "extends")
+    private String extend;
+
+    private final HashMap<String, String> actions;
 
     public BasicComponent(String id) {
         this.id = id;
@@ -372,6 +375,11 @@ public abstract class BasicComponent implements IComponent {
 
     public BasicComponent setOffsetY(double offsetY) {
         this.offsetY = offsetY;
+        return this;
+    }
+
+    public BasicComponent setExtend(String extend) {
+        this.extend = extend;
         return this;
     }
 }

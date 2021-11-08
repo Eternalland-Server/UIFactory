@@ -60,7 +60,7 @@ public class PacketListener implements Listener {
                 event = new UIFScreenReloadEvent(player, screenID);
                 break;
             case UIFCompSubmitEvent:
-                SubmitParams params = new SubmitParams(new LinkedList<>(data.subList(1, data.size())));
+                SubmitParams params = new SubmitParams(new LinkedList<>(data.subList(2, data.size())));
                 event = new UIFCompSubmitEvent(player, screenID, compID, params);
                 break;
 
