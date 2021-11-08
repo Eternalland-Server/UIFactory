@@ -1,8 +1,8 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui;
 
 import com.taylorswiftcn.megumi.uifactory.generate.ui.screen.ScreenUI;
-import eos.moe.dragoncore.config.FolderType;
-import eos.moe.dragoncore.network.PacketSender;
+import net.sakuragame.eternal.dragoncore.config.FolderType;
+import net.sakuragame.eternal.dragoncore.network.PacketSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
