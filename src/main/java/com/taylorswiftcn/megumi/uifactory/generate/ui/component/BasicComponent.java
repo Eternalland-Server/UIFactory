@@ -2,9 +2,9 @@ package com.taylorswiftcn.megumi.uifactory.generate.ui.component;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
 import com.taylorswiftcn.megumi.uifactory.generate.function.SubmitParams;
-import eos.moe.dragoncore.util.Utils;
 import lombok.Getter;
 import lombok.ToString;
+import net.sakuragame.eternal.dragoncore.util.Utils;
 import org.apache.commons.lang.StringUtils;
 
 import java.lang.reflect.Field;
