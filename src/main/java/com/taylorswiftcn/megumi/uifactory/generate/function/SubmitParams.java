@@ -3,6 +3,7 @@ package com.taylorswiftcn.megumi.uifactory.generate.function;
 import com.taylorswiftcn.megumi.uifactory.event.UIFEvent;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class SubmitParams {
 
@@ -19,6 +20,11 @@ public class SubmitParams {
 
     public SubmitParams add(String param) {
         this.params.add(param);
+        return this;
+    }
+
+    public SubmitParams add(List<String> params) {
+        this.params.addAll(params);
         return this;
     }
 
