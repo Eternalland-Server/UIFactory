@@ -1,6 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory;
 
 import com.taylorswiftcn.megumi.uifactory.commands.MainCommand;
+import com.taylorswiftcn.megumi.uifactory.listener.ExampleListener;
 import com.taylorswiftcn.megumi.uifactory.listener.PacketListener;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -16,7 +17,7 @@ public class UIFactoryPlugin extends JavaPlugin {
         instance = this;
 
         Bukkit.getPluginManager().registerEvents(new PacketListener(), this);
-        /*Bukkit.getPluginManager().registerEvents(new TestListener(), this);*/
+        /*Bukkit.getPluginManager().registerEvents(new ExampleListener(), this);*/
         getCommand("uif").setExecutor(new MainCommand());
 
         long end = System.currentTimeMillis();

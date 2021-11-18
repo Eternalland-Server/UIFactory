@@ -1,12 +1,12 @@
 package com.taylorswiftcn.megumi.uifactory.commands;
 
-public enum PermissionType {
+public enum CommandPerms {
 
     Admin("admin"),Use("use");
 
     private String id;
 
-    PermissionType(String id) {
+    CommandPerms(String id) {
         this.id = id;
     }
 }

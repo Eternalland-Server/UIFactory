@@ -7,23 +7,25 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainCommand implements TabExecutor {
-    private HelpCommand help;
-    private HashMap<String, MegumiCommand> commands;
+    private final HelpCommand help;
+    private final HashMap<String, SubCommand> commands;
 
     public MainCommand() {
         this.help = new HelpCommand();
         this.commands = new HashMap<>();
-        /*this.commands.put("test", new TestCommand());*/
+        /*this.commands.put("example", new ExampleCommand());*/
         this.commands.put("reload", new ReloadCommand());
     }
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        MegumiCommand cmd = help;
+        SubCommand cmd = help;
         if (strings.length >= 1 && commands.containsKey(strings[0])) {
             cmd = commands.get(strings[0]);
         }

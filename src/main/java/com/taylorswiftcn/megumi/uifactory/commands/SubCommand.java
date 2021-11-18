@@ -1,11 +1,11 @@
 package com.taylorswiftcn.megumi.uifactory.commands;
 
 import com.taylorswiftcn.megumi.uifactory.UIFactoryPlugin;
-import com.taylorswiftcn.megumi.uifactory.util.MegumiUtil;
+import com.taylorswiftcn.megumi.uifactory.util.UIFactoryUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public abstract class MegumiCommand {
+public abstract class SubCommand {
     private UIFactoryPlugin plugin;
     private boolean isPlayer;
     private Player player;
@@ -15,11 +15,11 @@ public abstract class MegumiCommand {
         this.isPlayer = commandSender instanceof Player;
         if (isPlayer) player = (Player) commandSender;
         if (playerOnly() && !isPlayer) {
-            commandSender.sendMessage(MegumiUtil.onReplace(" &7控制台无法使用该命令"));
+            commandSender.sendMessage(UIFactoryUtil.onReplace(" &7控制台无法使用该命令"));
             return;
         }
         if (getPermission() != null && !commandSender.hasPermission(getPermission())) {
-            commandSender.sendMessage(MegumiUtil.onReplace(" &7你没有权限: &a" + getPermission()));
+            commandSender.sendMessage(UIFactoryUtil.onReplace(" &7你没有权限: &a" + getPermission()));
             return;
         }
         perform(commandSender, strings);
@@ -46,5 +46,5 @@ public abstract class MegumiCommand {
 
     public abstract boolean playerOnly();
 
-    public abstract PermissionType getPT();
+    public abstract CommandPerms getPT();
 }

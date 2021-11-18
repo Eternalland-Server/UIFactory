@@ -1,7 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.commands.sub;
 
-import com.taylorswiftcn.megumi.uifactory.commands.MegumiCommand;
-import com.taylorswiftcn.megumi.uifactory.commands.PermissionType;
+import com.taylorswiftcn.megumi.uifactory.commands.SubCommand;
+import com.taylorswiftcn.megumi.uifactory.commands.CommandPerms;
 import com.taylorswiftcn.megumi.uifactory.generate.function.Statements;
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
 import com.taylorswiftcn.megumi.uifactory.generate.type.FunctionType;
@@ -17,7 +17,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 
-public class TestCommand extends MegumiCommand {
+public class ExampleCommand extends SubCommand {
     @Override
     public void perform(CommandSender CommandSender, String[] Strings) {
         Player player = getPlayer();
@@ -72,7 +72,7 @@ public class TestCommand extends MegumiCommand {
     }
 
     @Override
-    public PermissionType getPT() {
-        return PermissionType.Admin;
+    public CommandPerms getPT() {
+        return CommandPerms.Admin;
     }
 }
