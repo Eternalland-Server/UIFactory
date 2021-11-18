@@ -2,10 +2,12 @@ package com.taylorswiftcn.megumi.uifactory.generate.ui.component;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
 import com.taylorswiftcn.megumi.uifactory.generate.function.SubmitParams;
+import com.taylorswiftcn.megumi.uifactory.util.UIFactoryUtil;
 import lombok.Getter;
 import lombok.ToString;
 import net.sakuragame.eternal.dragoncore.util.Utils;
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Sound;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -154,6 +156,11 @@ public abstract class BasicComponent implements IComponent {
 
     public BasicComponent addAction(ActionType type, SubmitParams params) {
         actions.merge(type.getName(), params.getPacket(getID()), (a, b) -> a + "\n" + b);
+        return this;
+    }
+
+    public BasicComponent addAction(ActionType type, Sound sound) {
+        actions.merge(type.getName(), UIFactoryUtil.getPlaySoundFunc(sound), (a, b) -> a + "\n" + b);
         return this;
     }
 
