@@ -24,6 +24,6 @@ public class UIFactoryUtil {
     }
 
     public static String getPlaySoundFunc(Sound sound) {
-        return "func.Sound_Play('" + sound.name().replace("_", ".") + "')";
+        return "func.Sound_Play('" + sound.name().replace("_", ".") + "');";
     }
 }
