@@ -16,9 +16,7 @@ public class ScreenListener implements Listener {
         Player player = e.getPlayer();
         String screenID = e.getScreenID();
 
-        Bukkit.getScheduler().runTaskLater(UIFactoryPlugin.getInstance(), () -> {
-            CoreAPI.addOpenScreen(player.getUniqueId(), screenID);
-        }, 1);
+        Bukkit.getScheduler().runTaskLater(UIFactoryPlugin.getInstance(), () -> CoreAPI.addOpenScreen(player.getUniqueId(), screenID), 1);
     }
 
     @EventHandler
