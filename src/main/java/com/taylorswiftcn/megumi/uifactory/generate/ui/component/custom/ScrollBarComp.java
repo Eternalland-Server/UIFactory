@@ -1,11 +1,14 @@
 package com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom;
 
 import com.taylorswiftcn.megumi.uifactory.generate.type.ActionType;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.ComponentField;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.TextureComp;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.LinkedList;
 
 @Setter
 @Getter
@@ -15,9 +18,11 @@ public class ScrollBarComp extends TextureComp {
 
     private TextureComp bar;
     private TextureComp extendNode;
+    private LinkedList<BasicComponent> contents;
 
     public ScrollBarComp(String id, double rollDistance) {
         super(id);
+        this.contents = new LinkedList<>();
         this.bar = new TextureComp(id + "_bar");
         this.extendNode = new TextureComp(id + "_sub");
         this.extendNode.setLimitX(id + ".x");
@@ -39,11 +44,13 @@ public class ScrollBarComp extends TextureComp {
         return this;
     }
 
-    public String getExtendNodeID() {
-        return extendNode.getID();
+    public ScrollBarComp contents(BasicComponent comp) {
+        comp.setExtend(extendNode.getID());
+        contents.add(comp);
+        return this;
     }
 
-    public String getSubLocationY() {
+    public String getFollowY() {
         return bar.getID() + ".dy * " + getID() + ".height";
     }
 }

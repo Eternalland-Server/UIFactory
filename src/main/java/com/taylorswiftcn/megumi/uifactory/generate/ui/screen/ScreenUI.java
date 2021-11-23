@@ -142,6 +142,8 @@ public class ScreenUI extends BasicScreen {
                 yaml.set(comp.getID(), comp.build());
                 yaml.set(bar.getID(), bar.build());
                 yaml.set(extend.getID(), extend.build());
+
+                comp.getContents().forEach(sub -> yaml.set(sub.getID(), sub.build()));
                 continue;
             }
 

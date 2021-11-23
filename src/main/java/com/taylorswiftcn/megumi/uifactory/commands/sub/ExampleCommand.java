@@ -13,12 +13,8 @@ import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.TextureComp
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom.BodyComp;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom.ScrollBarComp;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.screen.ScreenUI;
-import net.sakuragame.eternal.dragoncore.DragonCore;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-
-import java.io.File;
 
 public class ExampleCommand extends SubCommand {
     @Override
@@ -26,7 +22,40 @@ public class ExampleCommand extends SubCommand {
         Player player = getPlayer();
 
         // 滚轮组件
-        ScrollBarComp comp = new ScrollBarComp("scrollbar", 27).setBar("255,0,0,100", "%body%.x + %body%.width - %bar%.width", "%body%.y", "5", "10");
+        ScrollBarComp comp = new ScrollBarComp("scrollbar", 27);
+        comp
+                // 设置滚动栏
+                .setBar("255,0,0,100", "%body%.x + %body%.width - %bar%.width", "%body%.y", "5", "10")
+                .contents(new TextureComp("test1")
+                        .setTexture("255,255,0,100")
+                        .setXY("scrollbar.x + 3", "scrollbar.y + 3 - " + comp.getFollowY())
+                        .setCompSize(24, 24)
+                )
+                .contents(new TextureComp("test2")
+                        .setTexture("255,255,0,100")
+                        .setXY("test1.x", "test1.y + test1.height + 3")
+                        .setCompSize(24, 24)
+                )
+                .contents(new TextureComp("test3")
+                        .setTexture("255,255,0,100")
+                        .setXY("test1.x", "test2.y + test2.height + 3")
+                        .setCompSize(24, 24)
+                )
+                .contents(new TextureComp("test3_1")
+                        .setTexture("255,255,0,100")
+                        .setXY("test3.x + test3.width + 3", "test3.y")
+                        .setCompSize(24, 24)
+                )
+                .contents(new TextureComp("test4")
+                        .setTexture("255,255,0,100")
+                        .setXY("test1.x", "test3.y + test3.height + 3")
+                        .setCompSize(24, 24)
+                )
+                .contents(new TextureComp("test5")
+                        .setTexture("255,255,0,100")
+                        .setXY("test1.x", "test4.y + test4.height + 3")
+                        .setCompSize(24, 24)
+                );
 
         ScreenUI ui = new ScreenUI("test")
                 .setAllowEsc(true)
@@ -63,43 +92,6 @@ public class ExampleCommand extends SubCommand {
                         .setTexture("255,255,255,100")
                         .setXY("0", "0")
                         .setCompSize(200, 240)
-                )
-                .addComponent(new TextureComp("test1")
-                        .setTexture("255,255,0,100")
-                        .setXY("scrollbar.x + 3", "scrollbar.y + 3 - " + comp.getSubLocationY())
-                        .setCompSize(24, 24)
-                        // 继承滚轮组件节点
-                        .setExtend(comp.getExtendNodeID())
-                )
-                .addComponent(new TextureComp("test2")
-                        .setTexture("255,255,0,100")
-                        .setXY("test1.x", "test1.y + test1.height + 3")
-                        .setCompSize(24, 24)
-                        .setExtend(comp.getExtendNodeID())
-                )
-                .addComponent(new TextureComp("test3")
-                        .setTexture("255,255,0,100")
-                        .setXY("test1.x", "test2.y + test2.height + 3")
-                        .setCompSize(24, 24)
-                        .setExtend(comp.getExtendNodeID())
-                )
-                .addComponent(new TextureComp("test3_1")
-                        .setTexture("255,255,0,100")
-                        .setXY("test3.x + test3.width + 3", "test3.y")
-                        .setCompSize(24, 24)
-                        .setExtend(comp.getExtendNodeID())
-                )
-                .addComponent(new TextureComp("test4")
-                        .setTexture("255,255,0,100")
-                        .setXY("test1.x", "test3.y + test3.height + 3")
-                        .setCompSize(24, 24)
-                        .setExtend(comp.getExtendNodeID())
-                )
-                .addComponent(new TextureComp("test5")
-                        .setTexture("255,255,0,100")
-                        .setXY("test1.x", "test4.y + test4.height + 3")
-                        .setCompSize(24, 24)
-                        .setExtend(comp.getExtendNodeID())
                 );
 
 
