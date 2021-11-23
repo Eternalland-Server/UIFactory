@@ -43,22 +43,22 @@ public abstract class BasicComponent implements IComponent {
     private String limitHeight;
 
     @ComponentField(define = "minDistanceX")
-    private Double minMoveX;
+    private String minMoveX;
 
     @ComponentField(define = "maxDistanceX")
-    private Double maxMoveX;
+    private String maxMoveX;
 
     @ComponentField(define = "minDistanceY")
-    private Double minMoveY;
+    private String minMoveY;
 
     @ComponentField(define = "maxDistanceY")
-    private Double maxMoveY;
+    private String maxMoveY;
 
     @ComponentField(define = "distanceX")
-    private Double currentMoveX;
+    private String currentMoveX;
 
     @ComponentField(define = "distanceY")
-    private Double currentMoveY;
+    private String currentMoveY;
 
     @ComponentField(define = "visible")
     private String visible;
@@ -286,31 +286,55 @@ public abstract class BasicComponent implements IComponent {
     }
 
     public BasicComponent setMinMoveX(double minMoveX) {
+        return setMinMoveX(String.valueOf(minMoveX));
+    }
+
+    public BasicComponent setMaxMoveX(double maxMoveX) {
+        return setMaxMoveX(String.valueOf(maxMoveX));
+    }
+
+    public BasicComponent setMinMoveX(String minMoveX) {
         this.minMoveX = minMoveX;
         return this;
     }
 
-    public BasicComponent setMaxMoveX(double maxMoveX) {
+    public BasicComponent setMaxMoveX(String maxMoveX) {
         this.maxMoveX = maxMoveX;
         return this;
     }
 
     public BasicComponent setMinMoveY(double minMoveY) {
+        return setMinMoveY(String.valueOf(minMoveX));
+    }
+
+    public BasicComponent setMaxMoveY(double maxMoveY) {
+        return setMaxMoveY(String.valueOf(maxMoveY));
+    }
+
+    public BasicComponent setMinMoveY(String minMoveY) {
         this.minMoveY = minMoveY;
         return this;
     }
 
-    public BasicComponent setMaxMoveY(double maxMoveY) {
+    public BasicComponent setMaxMoveY(String maxMoveY) {
         this.maxMoveY = maxMoveY;
         return this;
     }
 
     public BasicComponent setCurrentMoveX(double currentMoveX) {
+        return setCurrentMoveX(String.valueOf(currentMoveX));
+    }
+
+    public BasicComponent setCurrentMoveY(double currentMoveY) {
+        return setCurrentMoveY(String.valueOf(currentMoveY));
+    }
+
+    public BasicComponent setCurrentMoveX(String currentMoveX) {
         this.currentMoveX = currentMoveX;
         return this;
     }
 
-    public BasicComponent setCurrentMoveY(double currentMoveY) {
+    public BasicComponent setCurrentMoveY(String currentMoveY) {
         this.currentMoveY = currentMoveY;
         return this;
     }

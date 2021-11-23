@@ -8,6 +8,7 @@ import com.taylorswiftcn.megumi.uifactory.generate.ui.component.BasicComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.IComponent;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.SlotComp;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.TextureComp;
+import com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom.ScrollBarComp;
 import lombok.Getter;
 import net.sakuragame.eternal.dragoncore.api.SlotAPI;
 import net.sakuragame.eternal.dragoncore.network.PacketSender;
@@ -129,6 +130,21 @@ public class ScreenUI extends BasicScreen {
         yaml.set("Functions", functions.isEmpty() ? null : functions);
 
         getComponents().forEach((id, component) -> {
+
+        });
+
+        for (IComponent component : getComponents().values()) {
+            if (component instanceof ScrollBarComp) {
+                ScrollBarComp comp = (ScrollBarComp) component;
+                TextureComp bar = comp.getBar();
+                TextureComp extend = comp.getExtendNode();
+
+                yaml.set(comp.getID(), comp.build());
+                yaml.set(bar.getID(), bar.build());
+                yaml.set(extend.getID(), extend.build());
+                continue;
+            }
+
             if (component instanceof SlotComp) {
                 SlotComp comp = (SlotComp) component;
                 if (!comp.getIdentifier().startsWith("container_") && player != null) {
@@ -138,8 +154,8 @@ public class ScreenUI extends BasicScreen {
             }
 
             Map<String, Object> build = component.build();
-            yaml.set(id, build);
-        });
+            yaml.set(component.getID(), build);
+        }
 
         return yaml;
     }

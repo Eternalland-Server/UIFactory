@@ -1,5 +1,6 @@
 package com.taylorswiftcn.megumi.uifactory.commands;
 
+import com.taylorswiftcn.megumi.uifactory.commands.sub.ExampleCommand;
 import com.taylorswiftcn.megumi.uifactory.commands.sub.HelpCommand;
 import com.taylorswiftcn.megumi.uifactory.commands.sub.ReloadCommand;
 import org.apache.commons.lang.StringUtils;
@@ -19,7 +20,7 @@ public class MainCommand implements TabExecutor {
     public MainCommand() {
         this.help = new HelpCommand();
         this.commands = new HashMap<>();
-        /*this.commands.put("example", new ExampleCommand());*/
+        this.commands.put("test", new ExampleCommand());
         this.commands.put("reload", new ReloadCommand());
     }
 
