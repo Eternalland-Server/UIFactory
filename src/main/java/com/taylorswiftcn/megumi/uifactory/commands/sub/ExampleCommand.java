@@ -105,7 +105,7 @@ public class ExampleCommand extends SubCommand {
         }*/
 
         UIFactory.open(player, ui);
-        player.sendMessage("&7&l[UIFactory] &adone!");
+        player.sendMessage("§7§l[UIFactory] §adone!");
     }
 
     @Override
