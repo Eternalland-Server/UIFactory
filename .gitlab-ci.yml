@@ -1,3 +1,6 @@
+variables:
+  TARGET_DIR: /var/data/artifacts/$CI_PROJECT_NAME
+
 stages:
   - build
   - deploy
@@ -21,7 +24,11 @@ deploy:
   tags:
     - maven
   script:
-    - mvn clean deploy -DskipTests # No need for tests.
+    - mvn clean deploy -DskipTests
+    - mkdir -p $TARGET_DIR
+    - rm -rf $TARGET_DIR/*
+    - cp -vrf ./*/target/*.jar $TARGET_DIR/
+    - rm -vrf $TARGET_DIR/original*
   only:
     - master
     - main
