@@ -33,6 +33,11 @@ public class SubmitParams {
         return this;
     }
 
+    public SubmitParams addValue(int value) {
+        this.params.add("'" + value + "'");
+        return this;
+    }
+
     public SubmitParams setCondition(String condition) {
         this.condition = condition;
         return this;
