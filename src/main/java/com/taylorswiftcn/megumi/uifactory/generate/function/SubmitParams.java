@@ -47,6 +47,14 @@ public class SubmitParams {
         return params.get(index);
     }
 
+    public int getParamI(int index) {
+        return (int) Double.parseDouble(params.get(index));
+    }
+
+    public double getParamD(int index) {
+        return Double.parseDouble(params.get(index));
+    }
+
     public String getPacket(String compID) {
         String params2str = String.join(", ", params);
         return (condition == null) ?
