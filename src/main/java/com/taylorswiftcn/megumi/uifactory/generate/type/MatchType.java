@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum MatchType {
 
     HUD("hud"),
+    HUD_POST("hud_post"),
     GuiInventory("GuiInventory"),
     EscUI("GuiIngameMenu");
 
