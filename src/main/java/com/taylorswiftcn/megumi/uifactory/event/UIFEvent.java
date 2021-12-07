@@ -24,7 +24,9 @@ public enum UIFEvent {
     UIFScreenChatOpenEvent("UIFScreenChatOpenEvent"),
     UIFScreenChatCloseEvent("UIFScreenChatCloseEvent"),
     UIFScreenReceiveMsgEvent("UIFScreenReceiveMsgEvent"),
-    UIFScreenReloadEvent("UIFScreenReloadEvent");
+    UIFScreenReloadEvent("UIFScreenReloadEvent"),
+    UIFScreenClickEvent("UIFScreenClickEvent"),
+    UIFScreenClickReleaseEvent("UIFScreenClickReleaseEvent");
 
 
     private final String name;

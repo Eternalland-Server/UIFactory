@@ -59,18 +59,19 @@ public class PacketListener implements Listener {
             case UIFScreenReloadEvent:
                 event = new UIFScreenReloadEvent(player, screenID);
                 break;
+
             case UIFCompSubmitEvent:
                 SubmitParams params = new SubmitParams(new LinkedList<>(data.subList(2, data.size())));
                 event = new UIFCompSubmitEvent(player, screenID, compID, params);
                 break;
 
             case UIFCompClickEvent:
-                ClickType typeA = ClickType.valueOf(data.get(2));
-                event = new UIFCompClickEvent(player, screenID, compID, typeA);
+                ClickType compTypeA = ClickType.valueOf(data.get(2));
+                event = new UIFCompClickEvent(player, screenID, compID, compTypeA);
                 break;
             case UIFCompClickReleaseEvent:
-                ClickType typeB = ClickType.valueOf(data.get(2));
-                event = new UIFCompClickReleaseEvent(player, screenID, compID, typeB);
+                ClickType compTypeB = ClickType.valueOf(data.get(2));
+                event = new UIFCompClickReleaseEvent(player, screenID, compID, compTypeB);
                 break;
             case UIFCompMouseWheelEvent:
                 int valueA = Integer.parseInt(data.get(2));
@@ -81,16 +82,26 @@ public class PacketListener implements Listener {
                 event = new UIFCompTextChangeEvent(player, screenID, compID, text);
                 break;
             case UIFScreenKeyPressEvent:
-                String key = data.get(2);
+                String key = data.get(1);
                 event = new UIFScreenKeyPressEvent(player, screenID, key);
                 break;
             case UIFScreenMouseWheelEvent:
-                int valueB = Integer.parseInt(data.get(2));
+                int valueB = Integer.parseInt(data.get(1));
                 event = new UIFScreenMouseWheelEvent(player, screenID, valueB);
                 break;
             case UIFScreenReceiveMsgEvent:
-                String msg = data.get(2);
+                String msg = data.get(1);
                 event = new UIFScreenReceiveMsgEvent(player, screenID, msg);
+                break;
+
+            case UIFScreenClickEvent:
+                ClickType screenClickA = ClickType.valueOf(data.get(2));
+                event = new UIFScreenClickEvent(player, screenID, compID, screenClickA);
+                break;
+            case UIFScreenClickReleaseEvent:
+                ClickType screenClickB = ClickType.valueOf(data.get(1));
+                event = new UIFScreenClickReleaseEvent(player, screenID, screenClickB);
+                break;
             default:
                 break;
         }

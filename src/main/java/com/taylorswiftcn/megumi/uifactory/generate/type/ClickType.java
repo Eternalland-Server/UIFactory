@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ClickType {
 
+    ANY("ANY"),
     LEFT("LEFT"),
     RIGHT("RIGHT"),
     MIDDLE("MIDDLE");

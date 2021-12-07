@@ -10,14 +10,17 @@ public enum ActionType {
     Remove("remove", UIFEvent.UIFCompRemoveEvent),
     PreRender("preRender", UIFEvent.UIFCompPreRenderEvent),
     PostRender("postRender", UIFEvent.UIFCompPostRenderEvent),
+
+    Click("click", UIFEvent.UIFCompClickEvent, String.format("'%s'", ClickType.ANY.getName())),
     Left_Click("click_left", UIFEvent.UIFCompClickEvent, String.format("'%s'", ClickType.LEFT.getName())),
     Right_Click("click_right", UIFEvent.UIFCompClickEvent, String.format("'%s'", ClickType.RIGHT.getName())),
     Middle_Click("click_middle", UIFEvent.UIFCompClickEvent, String.format("'%s'", ClickType.MIDDLE.getName())),
-    Click("click", UIFEvent.UIFCompClickEvent),
+
+    Release("release", UIFEvent.UIFCompClickReleaseEvent, String.format("'%s'", ClickType.ANY.getName())),
     Left_Release("release_left", UIFEvent.UIFCompClickReleaseEvent, String.format("'%s'", ClickType.LEFT.getName())),
     Right_Release("release_right", UIFEvent.UIFCompClickReleaseEvent, String.format("'%s'", ClickType.RIGHT.getName())),
     Middle_Release("release_middle", UIFEvent.UIFCompClickReleaseEvent, String.format("'%s'", ClickType.MIDDLE.getName())),
-    Release("release", UIFEvent.UIFCompClickReleaseEvent),
+
     Enter("enter", UIFEvent.UIFCompMouseEnterEvent),
     Leave("leave", UIFEvent.UIFCompMouseLeaveEvent),
     Wheel("wheel", UIFEvent.UIFCompMouseWheelEvent, "func.mouse_get_wheel"),

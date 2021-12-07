@@ -13,7 +13,16 @@ public enum FunctionType {
     ChatOpen("chatOpen", UIFEvent.UIFScreenChatOpenEvent),
     ChatClose("chatClose", UIFEvent.UIFScreenChatCloseEvent),
     Message("message", UIFEvent.UIFScreenReceiveMsgEvent, "func.message_current"),
-    Reload("reload", UIFEvent.UIFScreenReloadEvent);
+    Reload("reload", UIFEvent.UIFScreenReloadEvent),
+
+    Click("click", UIFEvent.UIFScreenClickEvent, String.format("func.Component_Hovered_Name, '%s'", ClickType.ANY.getName())),
+    Left_Click("click_left", UIFEvent.UIFScreenClickEvent, String.format("func.Component_Hovered_Name, '%s'", ClickType.LEFT.getName())),
+    Right_Click("click_right", UIFEvent.UIFScreenClickEvent, String.format("func.Component_Hovered_Name, '%s'", ClickType.RIGHT.getName())),
+
+    Release("release", UIFEvent.UIFScreenClickReleaseEvent, String.format("'%s'", ClickType.ANY.getName())),
+    Left_Release("release_left", UIFEvent.UIFScreenClickReleaseEvent, String.format("'%s'", ClickType.RIGHT.getName())),
+    Right_Release("release_right", UIFEvent.UIFScreenClickReleaseEvent, String.format("'%s'", ClickType.MIDDLE.getName()));
+
 
     private final String name;
     private final UIFEvent event;
