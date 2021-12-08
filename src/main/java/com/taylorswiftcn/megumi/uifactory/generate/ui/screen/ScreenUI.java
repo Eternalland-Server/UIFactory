@@ -27,6 +27,7 @@ public class ScreenUI extends BasicScreen {
     private Boolean interactHUD;
     private Boolean allowThrough;
     private Boolean allowEsc;
+    private Boolean debug;
     private final List<HudType> hideHUD;
     private final List<String> imports;
     private final HashMap<String, String> functions;
@@ -121,6 +122,7 @@ public class ScreenUI extends BasicScreen {
         yaml.set("interactHud", interactHUD);
         yaml.set("through", allowThrough);
         yaml.set("allowEscClose", allowEsc);
+        yaml.set("debug", debug);
 
         List<String> hideList = new ArrayList<>();
         hideHUD.forEach(element -> hideList.add(element.getName()));
@@ -206,6 +208,11 @@ public class ScreenUI extends BasicScreen {
 
     public ScreenUI setAllowEsc(Boolean allowEsc) {
         this.allowEsc = allowEsc;
+        return this;
+    }
+
+    public ScreenUI setDebug(Boolean debug) {
+        this.debug = debug;
         return this;
     }
 
