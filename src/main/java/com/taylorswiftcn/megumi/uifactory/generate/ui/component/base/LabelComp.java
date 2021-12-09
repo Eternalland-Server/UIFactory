@@ -32,6 +32,12 @@ public class LabelComp extends BasicComponent {
     @ComponentField(define = "font")
     private String textFont;
 
+    @ComponentField(define = "replaceColor")
+    private Boolean replaceColor;
+
+    @ComponentField(define = "lineSpace")
+    private Double lineSpace;
+
     public LabelComp(String id, String text) {
         this(id, new ArrayList<>(Collections.singletonList(text)), false);
     }
@@ -82,6 +88,16 @@ public class LabelComp extends BasicComponent {
 
     public LabelComp setTextFont(String textFont) {
         this.textFont = textFont;
+        return this;
+    }
+
+    public LabelComp setReplaceColor(Boolean replaceColor) {
+        this.replaceColor = replaceColor;
+        return this;
+    }
+
+    public LabelComp setLineSpace(Double lineSpace) {
+        this.lineSpace = lineSpace;
         return this;
     }
 }
