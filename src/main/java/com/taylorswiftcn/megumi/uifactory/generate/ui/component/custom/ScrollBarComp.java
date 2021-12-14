@@ -25,7 +25,7 @@ public class ScrollBarComp extends TextureComp {
         super(id);
         this.contents = new LinkedList<>();
         this.bar = new TextureComp(id + "_bar");
-        this.body = new TextureComp("id" + "_body");
+        this.body = new TextureComp(id + "_body");
         this.body.setXY(getID() + ".x", getID() + ".y -" + getFollowY());
         this.extendNode = new TextureComp(id + "_sub");
         this.extendNode.setLimitX(id + ".x");
