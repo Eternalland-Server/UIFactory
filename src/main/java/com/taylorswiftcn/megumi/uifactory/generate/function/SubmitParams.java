@@ -1,6 +1,7 @@
 package com.taylorswiftcn.megumi.uifactory.generate.function;
 
 import com.taylorswiftcn.megumi.uifactory.event.UIFEvent;
+import org.bukkit.plugin.Plugin;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -8,10 +9,15 @@ import java.util.List;
 public class SubmitParams {
 
     private String condition;
-    private LinkedList<String> params;
+    private final LinkedList<String> params;
 
     public SubmitParams() {
         this.params = new LinkedList<>();
+    }
+
+    public SubmitParams(Plugin plugin) {
+        this.params = new LinkedList<>();
+        this.params.add("'" + plugin.getName() + "'");
     }
 
     public SubmitParams(LinkedList<String> params) {
