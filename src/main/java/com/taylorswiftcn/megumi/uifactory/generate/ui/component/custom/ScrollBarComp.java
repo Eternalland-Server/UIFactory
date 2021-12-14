@@ -44,9 +44,17 @@ public class ScrollBarComp extends TextureComp {
         return this;
     }
 
-    public ScrollBarComp contents(BasicComponent comp) {
-        comp.setExtend(extendNode.getID());
-        contents.add(comp);
+    public ScrollBarComp addContent(BasicComponent component) {
+        component.setExtend(extendNode.getID());
+        contents.add(component);
+        return this;
+    }
+
+    public ScrollBarComp addContent(LinkedList<BasicComponent> components) {
+        components.forEach(c -> {
+            c.setExtend(extendNode.getID());
+            contents.add(c);
+        });
         return this;
     }
 
