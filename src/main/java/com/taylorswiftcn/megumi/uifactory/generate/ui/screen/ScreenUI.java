@@ -138,9 +138,11 @@ public class ScreenUI extends BasicScreen {
         for (IComponent component : getComponents().values()) {
             if (component instanceof ScrollBarComp) {
                 ScrollBarComp comp = (ScrollBarComp) component;
+                TextureComp body = comp.getBody();
                 TextureComp bar = comp.getBar();
                 TextureComp extend = comp.getExtendNode();
 
+                yaml.set(body.getID(), body.build());
                 yaml.set(comp.getID(), comp.build());
                 yaml.set(bar.getID(), bar.build());
                 yaml.set(extend.getID(), extend.build());
