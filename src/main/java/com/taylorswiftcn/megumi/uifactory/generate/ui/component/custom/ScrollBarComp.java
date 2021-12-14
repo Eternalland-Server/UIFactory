@@ -16,17 +16,17 @@ import java.util.LinkedList;
 @ComponentField(define = "texture")
 public class ScrollBarComp extends TextureComp {
 
-    private TextureComp body;
     private TextureComp bar;
+    private TextureComp body;
     private TextureComp extendNode;
     private LinkedList<BasicComponent> contents;
 
     public ScrollBarComp(String id, double rollDistance) {
         super(id);
         this.contents = new LinkedList<>();
+        this.bar = new TextureComp(id + "_bar");
         this.body = new TextureComp("id" + "_body");
         this.body.setXY(getID() + ".x", getID() + ".y -" + getFollowY());
-        this.bar = new TextureComp(id + "_bar");
         this.extendNode = new TextureComp(id + "_sub");
         this.extendNode.setLimitX(id + ".x");
         this.extendNode.setLimitY(id + ".y");
