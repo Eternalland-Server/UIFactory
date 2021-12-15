@@ -16,36 +16,53 @@ import java.util.LinkedList;
 @ComponentField(define = "texture")
 public class ScrollBarComp extends TextureComp {
 
-    private TextureComp bar;
-    private TextureComp body;
+    private TextureComp thumb;
+    private TextureComp region;
     private TextureComp extendNode;
     private LinkedList<BasicComponent> contents;
+    private double trDistance;
+    private double rrDistance;
 
-    public ScrollBarComp(String id, double rollDistance) {
+    public ScrollBarComp(String id, double thumbRollDistance, double regionRollDistance) {
         super(id);
+        this.trDistance = thumbRollDistance;
+        this.rrDistance = regionRollDistance;
         this.contents = new LinkedList<>();
-        this.bar = new TextureComp(id + "_bar");
-        this.body = new TextureComp(id + "_body");
-        this.body.setXY(getID() + ".x", getID() + ".y -" + getFollowY());
+
         this.extendNode = new TextureComp(id + "_sub");
         this.extendNode.setLimitX(id + ".x");
         this.extendNode.setLimitY(id + ".y");
-        this.extendNode.setLimitWidth(id + ".width -" + bar.getID() + ".width");
+        this.extendNode.setLimitWidth(id + ".width -" + thumb.getID() + ".width");
         this.extendNode.setLimitHeight(id + ".height");
-        this.addAction(ActionType.Wheel, bar.getID() + ".distanceY=" + bar.getID() + ".distanceY-func.mouse_get_wheel*" + rollDistance);
+
+        this.addAction(ActionType.Wheel, String.format("%s.distanceY = %s.distanceY - func.mouse_get_wheel * %s;", thumb.getID(), thumb.getID(), trDistance));
     }
 
-    public ScrollBarComp setBar(String texture, String x, String y, String width, String height) {
-        this.bar.setTexture(texture);
-        this.bar.setXY(
-                x.replace("%body%", getID()).replace("%bar%", bar.getID()),
-                y.replace("%body%", getID()).replace("%bar%", bar.getID())
-        );
-        this.bar.setCompSize(width, height);
-        this.bar.setMaxMoveY(getID() + ".height-" + bar.getID() + ".height");
-
+    public ScrollBarComp setThumb(TextureComp thumb) {
+        this.thumb = thumb;
+        this.thumb.setMaxMoveY(String.format("%s.height - %s.height", getID(), thumb.getID()));
+        this.setScrollRegion();
         return this;
     }
+
+    public void setScrollRegion() {
+        this.region = new TextureComp(getID() + "_region");
+        this.region.setX(String.format("%s.x", getID()));
+        this.region.setY(String.format("%s.y - %s", getID(), getFollowY()));
+    }
+
+    /*public ScrollBarComp setThumb(String texture, String x, String y, String width, String height) {
+        this.thumb = new TextureComp(getID() + "_bar");
+        this.thumb.setTexture(texture);
+        this.thumb.setXY(
+                x.replace("%body%", getID()).replace("%bar%", thumb.getID()),
+                y.replace("%body%", getID()).replace("%bar%", thumb.getID())
+        );
+        this.thumb.setCompSize(width, height);
+        this.thumb.setMaxMoveY(getID() + ".height-" + thumb.getID() + ".height");
+
+        return this;
+    }*/
 
     public ScrollBarComp addContent(BasicComponent component) {
         component.setExtend(extendNode.getID());
@@ -62,6 +79,6 @@ public class ScrollBarComp extends TextureComp {
     }
 
     public String getFollowY() {
-        return bar.getID() + ".dy * " + getID() + ".height";
+        return String.format("func.ceil(%s.distanceY / %s) * %s", thumb.getID(), trDistance, rrDistance);
     }
 }

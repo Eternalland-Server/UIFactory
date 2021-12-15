@@ -22,10 +22,18 @@ public class ExampleCommand extends SubCommand {
         Player player = getPlayer();
 
         // 滚轮组件
-        ScrollBarComp comp = new ScrollBarComp("scrollbar", 27);
+        ScrollBarComp comp = new ScrollBarComp("scrollbar", 27, 27);
+        comp
+                .setTexture("255,255,255,100")
+                .setXY("0", "0")
+                .setCompSize(200, 240);
         comp
                 // 设置滚动栏
-                .setBar("255,0,0,100", "%body%.x + %body%.width - %bar%.width", "%body%.y", "5", "10")
+                .setThumb((TextureComp) new TextureComp("scrollbar_thumb")
+                        .setTexture("255,0,0,100")
+                        .setXY( "%body%.x + %body%.width - %bar%.width", "%body%.y")
+                        .setCompSize(5, 10)
+                )
                 .addContent(new TextureComp("test1")
                         .setTexture("255,255,0,100")
                         .setXY("scrollbar.x + 3", "scrollbar.y + 3 - " + comp.getFollowY())
@@ -87,12 +95,8 @@ public class ExampleCommand extends SubCommand {
                         )
                 )
                 .generateContainerSlot("75,75,75,155", 69.5, 240.5, 1.3, 1, 1, 10, 10, 12d)
-                // 将滚轮组件放入UI并设置属性
-                .addComponent(comp
-                        .setTexture("255,255,255,100")
-                        .setXY("0", "0")
-                        .setCompSize(200, 240)
-                );
+                // 将滚轮组件放入UI
+                .addComponent(comp);
 
 
         /*File file = new File(DragonCore.getInstance().getDataFolder(), "test.yml");
