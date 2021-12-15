@@ -53,19 +53,6 @@ public class ScrollBarComp extends TextureComp {
         this.extendNode.setLimitHeight(getID() + ".height");
     }
 
-    /*public ScrollBarComp setThumb(String texture, String x, String y, String width, String height) {
-        this.thumb = new TextureComp(getID() + "_bar");
-        this.thumb.setTexture(texture);
-        this.thumb.setXY(
-                x.replace("%body%", getID()).replace("%bar%", thumb.getID()),
-                y.replace("%body%", getID()).replace("%bar%", thumb.getID())
-        );
-        this.thumb.setCompSize(width, height);
-        this.thumb.setMaxMoveY(getID() + ".height-" + thumb.getID() + ".height");
-
-        return this;
-    }*/
-
     public ScrollBarComp addContent(BasicComponent component) {
         component.setExtend(extendNode.getID());
         contents.add(component);

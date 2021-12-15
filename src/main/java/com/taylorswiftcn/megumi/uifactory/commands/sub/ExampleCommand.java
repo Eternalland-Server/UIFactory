@@ -34,6 +34,7 @@ public class ExampleCommand extends SubCommand {
                         .setXY( "%body%.x + %body%.width - %bar%.width", "%body%.y")
                         .setCompSize(5, 10)
                 )
+                // 添加滚动栏内组件
                 .addContent(new TextureComp("test1")
                         .setTexture("255,255,0,100")
                         .setXY("scrollbar.x + 3", "scrollbar.y + 3 - " + comp.getFollowY())
