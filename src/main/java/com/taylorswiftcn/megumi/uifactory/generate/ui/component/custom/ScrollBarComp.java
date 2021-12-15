@@ -28,13 +28,6 @@ public class ScrollBarComp extends TextureComp {
         this.trDistance = thumbRollDistance;
         this.rrDistance = regionRollDistance;
         this.contents = new LinkedList<>();
-
-        this.extendNode = new TextureComp(id + "_sub");
-        this.extendNode.setLimitX(id + ".x");
-        this.extendNode.setLimitY(id + ".y");
-        this.extendNode.setLimitWidth(id + ".width -" + thumb.getID() + ".width");
-        this.extendNode.setLimitHeight(id + ".height");
-
         this.addAction(ActionType.Wheel, String.format("%s.distanceY = %s.distanceY - func.mouse_get_wheel * %s;", thumb.getID(), thumb.getID(), trDistance));
     }
 
@@ -42,13 +35,22 @@ public class ScrollBarComp extends TextureComp {
         this.thumb = thumb;
         this.thumb.setMaxMoveY(String.format("%s.height - %s.height", getID(), thumb.getID()));
         this.setScrollRegion();
+        this.setExtendNode();
         return this;
     }
 
-    public void setScrollRegion() {
+    private void setScrollRegion() {
         this.region = new TextureComp(getID() + "_region");
         this.region.setX(String.format("%s.x", getID()));
         this.region.setY(String.format("%s.y - %s", getID(), getFollowY()));
+    }
+
+    private void setExtendNode() {
+        this.extendNode = new TextureComp(getID() + "_sub");
+        this.extendNode.setLimitX(getID() + ".x");
+        this.extendNode.setLimitY(getID() + ".y");
+        this.extendNode.setLimitWidth(getID() + ".width -" + thumb.getID() + ".width");
+        this.extendNode.setLimitHeight(getID() + ".height");
     }
 
     /*public ScrollBarComp setThumb(String texture, String x, String y, String width, String height) {
