@@ -21,13 +21,18 @@ public class ExampleCommand extends SubCommand {
     public void perform(CommandSender CommandSender, String[] Strings) {
         Player player = getPlayer();
 
-        // 滚轮组件
+        // 滚轮栏组件
         ScrollBarComp comp = new ScrollBarComp("scrollbar", 27, 27);
         comp
                 .setTexture("255,255,255,100")
                 .setXY("0", "0")
                 .setCompSize(200, 240);
         comp
+                .setTrack((TextureComp) new TextureComp("scrollbar_track")
+                        .setTexture("0,0,0,200")
+                        .setXY(0, 0)
+                        .setCompSize(5, 240)
+                )
                 // 设置滚动栏
                 .setThumb((TextureComp) new TextureComp("scrollbar_thumb")
                         .setTexture("255,0,0,100")

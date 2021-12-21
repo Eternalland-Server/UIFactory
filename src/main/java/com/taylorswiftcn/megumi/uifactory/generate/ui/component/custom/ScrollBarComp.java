@@ -16,6 +16,7 @@ import java.util.LinkedList;
 @ComponentField(define = "texture")
 public class ScrollBarComp extends TextureComp {
 
+    private TextureComp track;
     private TextureComp thumb;
     private TextureComp region;
     private TextureComp extendNode;
@@ -28,6 +29,11 @@ public class ScrollBarComp extends TextureComp {
         this.trDistance = thumbRollDistance;
         this.rrDistance = regionRollDistance;
         this.contents = new LinkedList<>();
+    }
+
+    public ScrollBarComp setTrack(TextureComp track) {
+        this.track = track;
+        return this;
     }
 
     public ScrollBarComp setThumb(TextureComp thumb) {
