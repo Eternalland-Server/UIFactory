@@ -32,7 +32,6 @@ public class ScrollBarComp extends TextureComp {
 
     public ScrollBarComp setThumb(TextureComp thumb) {
         this.thumb = thumb;
-        this.thumb.setMaxMoveY(String.format("%s.height - %s.height", getID(), thumb.getID()));
         this.setScrollRegion();
         this.setExtendNode();
         this.addAction(ActionType.Wheel, String.format("%s.distanceY = %s.distanceY - func.mouse_get_wheel * %s;", thumb.getID(), thumb.getID(), trDistance));
