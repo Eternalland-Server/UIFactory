@@ -162,7 +162,12 @@ public class ScreenUI extends BasicScreen {
             yaml.set(component.getID(), build);
         }
 
-        yaml.saveToString();
+        try {
+            yaml.saveToString();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         return yaml;
     }
 
