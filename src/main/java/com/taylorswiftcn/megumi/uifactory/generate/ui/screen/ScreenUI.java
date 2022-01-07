@@ -12,6 +12,7 @@ import com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom.ScrollBar
 import lombok.Getter;
 import net.sakuragame.eternal.dragoncore.api.SlotAPI;
 import net.sakuragame.eternal.dragoncore.network.PacketSender;
+import net.sakuragame.eternal.dragoncore.util.YamlContainer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -115,7 +116,7 @@ public class ScreenUI extends BasicScreen {
 
     @Override
     public YamlConfiguration build(Player player) {
-        YamlConfiguration yaml = new YamlConfiguration();
+        YamlContainer yaml = new YamlContainer();
         yaml.set("match", match);
         yaml.set("priority", priority == null ? null : priority.getIndex());
         yaml.set("currentItemSize", itemAtCursorSize);
@@ -161,6 +162,7 @@ public class ScreenUI extends BasicScreen {
             yaml.set(component.getID(), build);
         }
 
+        yaml.saveToString();
         return yaml;
     }
 
