@@ -18,16 +18,17 @@ public class ScrollBarComp extends TextureComp {
 
     private TextureComp track;
     private TextureComp thumb;
-    private TextureComp region;
     private TextureComp extendNode;
     private LinkedList<BasicComponent> contents;
-    private double trDistance;
-    private double rrDistance;
+    private double thumbRollDistance;
+    private double averageLineHeight;
+    private double normalLineHeight;
 
-    public ScrollBarComp(String id, double thumbRollDistance, double regionRollDistance) {
+    public ScrollBarComp(String id, double thumbRollDistance, double averageLineHeight, double normalLineHeight) {
         super(id);
-        this.trDistance = thumbRollDistance;
-        this.rrDistance = regionRollDistance;
+        this.thumbRollDistance = thumbRollDistance;
+        this.averageLineHeight = averageLineHeight;
+        this.normalLineHeight = normalLineHeight;
         this.contents = new LinkedList<>();
     }
 
@@ -38,20 +39,16 @@ public class ScrollBarComp extends TextureComp {
 
     public ScrollBarComp setThumb(TextureComp thumb) {
         this.thumb = thumb;
-        this.setScrollRegion();
         this.setExtendNode();
-        this.addAction(ActionType.Wheel, String.format("%s.distanceY = %s.distanceY - func.mouse_get_wheel * %s;", thumb.getID(), thumb.getID(), trDistance));
+        this.addAction(ActionType.Wheel, String.format("%s.distanceY = %s.distanceY - func.mouse_get_wheel * %s;", thumb.getID(), thumb.getID(), thumbRollDistance));
         return this;
     }
 
-    private void setScrollRegion() {
-        this.region = new TextureComp(getID() + "_region");
-        this.region.setX(String.format("%s.x", getID()));
-        this.region.setY(String.format("%s.y - %s", getID(), getFollowY()));
-    }
 
     private void setExtendNode() {
         this.extendNode = new TextureComp(getID() + "_sub");
+        this.extendNode.setX(String.format("%s.x", getID()));
+        this.extendNode.setY(String.format("%s.y - %s", getID(), getFollowY()));
         this.extendNode.setLimitX(getID() + ".x");
         this.extendNode.setLimitY(getID() + ".y");
         this.extendNode.setLimitWidth(getID() + ".width -" + thumb.getID() + ".width");
@@ -73,6 +70,6 @@ public class ScrollBarComp extends TextureComp {
     }
 
     public String getFollowY() {
-        return String.format("func.ceil(%s.distanceY / %s) * %s", thumb.getID(), trDistance, rrDistance);
+        return String.format("(%s.distanceY / %s) * %s", thumb.getID(), averageLineHeight, normalLineHeight);
     }
 }

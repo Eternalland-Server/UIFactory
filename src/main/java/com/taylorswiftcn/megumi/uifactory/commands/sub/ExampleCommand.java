@@ -13,8 +13,12 @@ import com.taylorswiftcn.megumi.uifactory.generate.ui.component.base.TextureComp
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom.BodyComp;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.component.custom.ScrollBarComp;
 import com.taylorswiftcn.megumi.uifactory.generate.ui.screen.ScreenUI;
+import net.sakuragame.eternal.dragoncore.DragonCore;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
+import java.io.File;
 
 public class ExampleCommand extends SubCommand {
     @Override
@@ -22,7 +26,7 @@ public class ExampleCommand extends SubCommand {
         Player player = getPlayer();
 
         // 滚轮栏组件
-        ScrollBarComp comp = new ScrollBarComp("scrollbar", 27, 27);
+        ScrollBarComp comp = new ScrollBarComp("scrollbar", 5, 48, 27);
         comp
                 .setTexture("255,255,255,100")
                 .setXY("0", "0")
@@ -36,8 +40,9 @@ public class ExampleCommand extends SubCommand {
                 // 设置滚动栏
                 .setThumb((TextureComp) new TextureComp("scrollbar_thumb")
                         .setTexture("255,0,0,100")
-                        .setXY( "%body%.x + %body%.width - %bar%.width", "%body%.y")
+                        .setXY( "scrollbar_track.x + scrollbar_track.width - scrollbar_thumb.width", "scrollbar_track.y")
                         .setCompSize(5, 10)
+                        .setMaxMoveY("scrollbar_track.height - 10")
                 )
                 // 添加滚动栏内组件
                 .addContent(new TextureComp("test1")
@@ -105,14 +110,14 @@ public class ExampleCommand extends SubCommand {
                 .addComponent(comp);
 
 
-        /*File file = new File(DragonCore.getInstance().getDataFolder(), "test.yml");
+        File file = new File(DragonCore.getInstance().getDataFolder(), "test.yml");
         YamlConfiguration yaml = ui.build(player);
         try {
             yaml.save(file);
         }
         catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
 
         UIFactory.open(player, ui);
         player.sendMessage("§7§l[UIFactory] §adone!");
